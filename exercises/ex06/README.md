@@ -26,7 +26,9 @@ You will debug the executable Travel application from [Exercise 4](../ex04/READM
   <summary>🔵 Click to expand!</summary>
 
 1. Open **Run & Debug** from the Activity Bar, or press **Ctrl+Shift+D** (macOS: **Cmd+Shift+D**).
-2. Locate the panels you will use:
+2. Familiarize yourself with the panels you will use:
+
+   > **Note:** This section is an introduction. The debugger panels and debug toolbar are only fully visible once you start debugging in [Exercise 6.3](#exercise-63-trigger-and-attach-the-debugger). Variables and call-stack details become available when execution pauses at a breakpoint. If you cannot see them yet, continue with Exercise 6.2 and return to this overview during the debugging session.
 
    | Panel | Purpose |
    |-------|---------|
@@ -71,7 +73,7 @@ See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugte
 1. Open `YCL_TRAVEL_APP_####`. Ensure its fixed travel/customer constants still match your sample data and that the invalid customer is absent.
 2. Run **ABAP: Run ABAP Application (Console)** from the Command Palette with the same destination and user used to set the breakpoints.
 3. If ADT requests permission to attach to the ABAP debugging session, accept it. The editor should pause at the service's helper call for the valid save.
-4. Confirm the current source statement and the Variables panel are visible before stepping.
+4. Now that execution is paused, locate the panels and debug toolbar introduced in [Exercise 6.1](#exercise-61-understand-the-visual-studio-code-debugger-for-abap). Confirm the current source statement and the Variables panel are visible before stepping.
 
 If execution finishes without stopping, verify that breakpoints are enabled and bound, source is active, and the selected class reaches `save_travel`. Recheck the destination and user. If your backend or ADT version cannot attach, record the version and ask the instructor to check debugger support and authorizations; the console and unit-test exercises remain usable.
 
