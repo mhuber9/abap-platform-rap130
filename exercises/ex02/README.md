@@ -46,6 +46,8 @@ You will learn to supply object names and requirements, inspect source context, 
 
 ### Step 1: Inspect the reference data
 
+The reference objects are in package **`/DMO/FLIGHT_LEGACY`** in your ABAP system. Open this package to explore their definitions.
+
 1. Open **GitHub Copilot Chat** and select **Agent mode**. You can first use **Plan mode** to review the proposed changes.
 
 2. Enter this prompt:
@@ -53,6 +55,7 @@ You will learn to supply object names and requirements, inspect source context, 
    ```text
    Read /DMO/TRAVEL_DATA and /DMO/BOOKING_DATA and the source tables
    /DMO/TRAVEL and /DMO/BOOKING in the connected ABAP system.
+   These reference objects are in package /DMO/FLIGHT_LEGACY.
    Explain the Travel-to-Booking keys, customer fields, currency fields, and
    any differences in field names or status values between structures and tables.
    We will build a plain ABAP Travel console application. Do not change anything yet.
