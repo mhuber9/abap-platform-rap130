@@ -25,7 +25,7 @@ The repository and package identifiers retain `RAP130` for continuity. The exerc
 - An **SAP BTP ABAP Environment**, **SAP S/4HANA Cloud Public Edition**, or suitable **SAP S/4HANA Cloud Private Edition** development system supporting the installed ADT extension and its MCP capabilities. Confirm backend/version requirements with your instructor and the linked SAP documentation.
 - The [ABAP Flight Reference Scenario](https://github.com/SAP-samples/abap-platform-refscen-flight) installed with `/DMO/TRAVEL_DATA`, `/DMO/BOOKING_DATA`, and populated `/DMO/TRAVEL`, `/DMO/BOOKING`, and `/DMO/CUSTOMER` source tables accessible to workshop code.
 - Authorization to create and activate participant objects, run console classes and ABAP Unit tests, and optionally debug. The ABAP SQL test double framework must be available.
-- Package `ZRAP130_AI_###`, supplied by the instructor or created using the Eclipse ADT fallback in Exercise 2. Application development then takes place in VS Code.
+- Package `#######_RAP130_AI`, supplied by the instructor or created using the Eclipse ADT fallback in Exercise 2. Application development then takes place in VS Code.
 
 Joule predictive code completion is an optional activity in Exercise 4 and requires its own enabled capabilities. Ask the instructor to confirm any backend entitlements required for ADT agentic tools; using Copilot does not replace those system prerequisites.
 
@@ -46,13 +46,13 @@ The workshop preserves the journey from environment setup to a working applicati
 - Generate isolated unit tests and inspect failures and corrections.
 - Optionally debug the executable application and create a custom agent.
 
-The executable class `ZCL_TRAVEL_APP_###` calls `ZCL_TRAVEL_SERVICE_###`; the service reads and saves participant data and uses `ZCL_TRAVEL_HELPER_###` for customer validation. The executable caller owns commit/rollback boundaries. Sample loading preserves existing participant data, and `/DMO/` data remains read-only.
+The executable class `YCL_TRAVEL_APP_####` calls `YCL_TRAVEL_SERVICE_####`; the service reads and saves participant data and uses `YCL_TRAVEL_HELPER_####` for customer validation. The executable caller owns commit/rollback boundaries. Sample loading preserves existing participant data, and `/DMO/` data remains read-only.
 
 </details>
 
 ## Exercises
 
-Complete the mandatory exercises in order. Replace `###` with your participant suffix throughout. [Prompt guidelines](resources/prompt-guidelines.md) provide reusable prompts and links to the complete specifications.
+Complete the mandatory exercises in order. Replace `#######` in the package name with your seven-character package identifier, and `####` in class and table names with your four-digit participant suffix. Replace the longer placeholder first. [Prompt guidelines](resources/prompt-guidelines.md) provide reusable prompts and links to the complete specifications.
 
 | Exercise | Learning focus |
 |----------|----------------|

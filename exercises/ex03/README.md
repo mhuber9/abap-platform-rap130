@@ -13,7 +13,7 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
 - [3.3 - Create the Customer-Validation Helper](#exercise-33-create-the-customer-validation-helper)
 - [Summary & Next Exercise](#summary--next-exercise)
 
-> Replace `###` with your group ID. Use only your participant tables for writes.
+> Replace `#######` in the package name with your seven-character package identifier first, then `####` in class and table names with your four-digit group ID. Use only your participant tables for writes.
 
 ---
 
@@ -23,11 +23,11 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open `ZCL_TRAVEL_SERVICE_###` and ask Copilot in Agent mode:
+1. Open `YCL_TRAVEL_SERVICE_####` and ask Copilot in Agent mode:
 
    ```text
-   Implement load_demo_data in ZCL_TRAVEL_SERVICE_###.
-   If either ZTRAVEL### or ZBOOKING### already contains data in the current client,
+   Implement load_demo_data in YCL_TRAVEL_SERVICE_####.
+   If either YTRAVEL#### or YBOOKING#### already contains data in the current client,
    return 'Demo data already present; loading skipped' without changing anything.
    Otherwise read up to five /DMO/TRAVEL rows ordered by travel_id that have at least
    one /DMO/BOOKING row and an existing non-initial customer in /DMO/CUSTOMER.
@@ -40,7 +40,7 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
    Let database exceptions reach the caller so it can roll back the whole load.
    Return 'Demo data loaded' on success. Never delete or update /DMO/ data.
 
-   Update ZCL_TRAVEL_APP_### main to call load_demo_data once, COMMIT WORK on
+   Update YCL_TRAVEL_APP_#### main to call load_demo_data once, COMMIT WORK on
    normal return, and catch cx_sy_open_sql_db to ROLLBACK WORK, print the error,
    and return on failure. Then print the loader message, travel count, and each
    travel followed by its bookings using read_travels, read_bookings and out->write.
@@ -65,7 +65,7 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open `ZCL_TRAVEL_APP_###` in the editor.
+1. Open `YCL_TRAVEL_APP_####` in the editor.
 
 2. Open the Command Palette and select **ABAP: Run ABAP Application (Console)**. Select the class if prompted. Use the console execution command supplied by your ADT version; do not select ABAP Unit test execution.
 
@@ -102,11 +102,11 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
   <summary>🔵 Click to expand!</summary>
 
 1. In the Command Palette, choose **ABAP: Create New ABAP Object**, then **Class**.
-2. Enter package `ZRAP130_AI_###`, name `ZCL_TRAVEL_HELPER_###`, and description `Travel customer validation ###`. Leave superclass and interface empty.
+2. Enter package `#######_RAP130_AI`, name `YCL_TRAVEL_HELPER_####`, and description `Travel customer validation ####`. Leave superclass and interface empty.
 3. Replace the class source with the following, substituting your group ID:
 
    ```abap
-   CLASS zcl_travel_helper_### DEFINITION
+   CLASS ycl_travel_helper_#### DEFINITION
      PUBLIC FINAL CREATE PUBLIC.
      PUBLIC SECTION.
        METHODS validate_customer
@@ -114,7 +114,7 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
          RETURNING VALUE(rv_exists) TYPE abap_bool.
    ENDCLASS.
 
-   CLASS zcl_travel_helper_### IMPLEMENTATION.
+   CLASS ycl_travel_helper_#### IMPLEMENTATION.
      METHOD validate_customer.
        rv_exists = abap_false.
        IF iv_customer_id IS INITIAL.

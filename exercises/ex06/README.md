@@ -15,7 +15,7 @@ You will debug the executable Travel application from [Exercise 4](../ex04/READM
 - [6.5 - Use the Watch View and Call Stack](#exercise-65-use-the-watch-view-and-call-stack)
 - [Summary](#summary)
 
-> Replace `###` with your group ID. Complete Exercise 4 first and activate all source changes before debugging.
+> Replace `####` with your four-digit group ID. Complete Exercise 4 first and activate all source changes before debugging.
 
 ---
 
@@ -49,11 +49,11 @@ See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugte
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open `ZCL_TRAVEL_SERVICE_###` using **ABAP: Open Object**.
+1. Open `YCL_TRAVEL_SERVICE_####` using **ABAP: Open Object**.
 2. Navigate to `save_travel` using the Outline or **Go to Symbol in Editor**.
 3. Click the editor gutter beside the helper call to set a breakpoint.
-4. Set another breakpoint on `MODIFY ztravel### FROM @is_travel`.
-5. Open `ZCL_TRAVEL_HELPER_###` and set a breakpoint on the `SELECT SINGLE` statement.
+4. Set another breakpoint on `MODIFY ytravel#### FROM @is_travel`.
+5. Open `YCL_TRAVEL_HELPER_####` and set a breakpoint on the `SELECT SINGLE` statement.
 6. Confirm all three entries appear in the Breakpoints panel.
 
 > The first breakpoint identifies each save attempt; the SQL-write breakpoint shows whether that attempt reaches persistence.
@@ -68,7 +68,7 @@ See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugte
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open `ZCL_TRAVEL_APP_###`. Ensure its fixed travel/customer constants still match your sample data and that the invalid customer is absent.
+1. Open `YCL_TRAVEL_APP_####`. Ensure its fixed travel/customer constants still match your sample data and that the invalid customer is absent.
 2. Run **ABAP: Run ABAP Application (Console)** from the Command Palette with the same destination and user used to set the breakpoints.
 3. If ADT requests permission to attach to the ABAP debugging session, accept it. The editor should pause at the service's helper call for the valid save.
 4. Confirm the current source statement and the Variables panel are visible before stepping.
@@ -110,9 +110,9 @@ If execution finishes without stopping, verify that breakpoints are enabled and 
 3. Inspect the **Call Stack**. Your application frames should lead through:
 
    ```text
-   ZCL_TRAVEL_APP_###     IF_OO_ADT_CLASSRUN~MAIN
-     ZCL_TRAVEL_SERVICE_###  SAVE_TRAVEL
-       ZCL_TRAVEL_HELPER_###   VALIDATE_CUSTOMER
+   YCL_TRAVEL_APP_####     IF_OO_ADT_CLASSRUN~MAIN
+     YCL_TRAVEL_SERVICE_####  SAVE_TRAVEL
+       YCL_TRAVEL_HELPER_####   VALIDATE_CUSTOMER
    ```
 
 4. Select the caller frame to see the original travel data, then return to the helper frame.

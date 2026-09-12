@@ -1,10 +1,10 @@
 # Prompt Guidelines for the ABAP Travel Workshop
 
-Use these prompts with **GitHub Copilot and ADT MCP tools**. Replace `###` with your participant suffix before sending. The linked exercises contain the complete specifications; use those for initial creation instead of asking Copilot to invent the application contract.
+Use these prompts with **GitHub Copilot and ADT MCP tools**. Replace `#######` in the package name with your seven-character package identifier first, then replace `####` in class and table names with your four-digit participant suffix before sending. The linked exercises contain the complete specifications; use those for initial creation instead of asking Copilot to invent the application contract.
 
 ## General principles
 
-- Specify exact object names, package `ZRAP130_AI_###`, and the connected destination.
+- Specify exact object names, package `#######_RAP130_AI`, and the connected destination.
 - Inspect existing source and available tools before making changes.
 - Use ADT object-creation tools where supported, and edit source through the ADT virtual workspace.
 - Review the source before activation and tests. Review proposed fixes rather than weakening failing assertions.
@@ -24,13 +24,13 @@ Do not change or activate anything.
 
 ### Exercise 2 — Create the application
 
-Use the full [Exercise 2 creation prompt](../exercises/ex02/README.md#exercise-22-generate-the-travel-tables-and-classes). It defines `ZTRAVEL###`, `ZBOOKING###`, `ZCL_TRAVEL_SERVICE_###`, and `ZCL_TRAVEL_APP_###`, including method signatures. The helper is introduced in Exercise 3.
+Use the full [Exercise 2 creation prompt](../exercises/ex02/README.md#exercise-22-generate-the-travel-tables-and-classes). It defines `YTRAVEL####`, `YBOOKING####`, `YCL_TRAVEL_SERVICE_####`, and `YCL_TRAVEL_APP_####`, including method signatures. The helper is introduced in Exercise 3.
 
 After reviewing the source:
 
 ```text
-Activate ZTRAVEL### and ZBOOKING###, then ZCL_TRAVEL_SERVICE_###, then
-ZCL_TRAVEL_APP_### using the available ADT tools. Report actual activation results.
+Activate YTRAVEL#### and YBOOKING####, then YCL_TRAVEL_SERVICE_####, then
+YCL_TRAVEL_APP_#### using the available ADT tools. Report actual activation results.
 ```
 
 ### Exercise 3 — Load and display sample data
@@ -38,7 +38,7 @@ ZCL_TRAVEL_APP_### using the available ADT tools. Report actual activation resul
 Use the full [demo-loading prompt](../exercises/ex03/README.md#exercise-31-load-travel-and-booking-demo-data), including source selection and transaction handling. For a read-only review:
 
 ```text
-Review load_demo_data in ZCL_TRAVEL_SERVICE_### and the caller in ZCL_TRAVEL_APP_###.
+Review load_demo_data in YCL_TRAVEL_SERVICE_#### and the caller in YCL_TRAVEL_APP_####.
 Explain why a repeated run skips existing data, how Booking rows are restricted to
 selected travels, and how a failed load is rolled back. Do not change anything.
 ```
@@ -46,8 +46,8 @@ selected travels, and how a failed load is rolled back. Do not change anything.
 ### Exercise 4 — Add customer validation
 
 ```text
-In ZCL_TRAVEL_SERVICE_###->save_travel, use
-ZCL_TRAVEL_HELPER_###->validate_customer before any database write.
+In YCL_TRAVEL_SERVICE_####->save_travel, use
+YCL_TRAVEL_HELPER_####->validate_customer before any database write.
 Reject initial or nonexistent customers with ty_result-success = abap_false
 and a meaningful message. Preserve the signature and caller-owned transactions.
 Show changes for review before activation.
@@ -58,7 +58,7 @@ Use the full [console validation prompt](../exercises/ex04/README.md#exercise-42
 ### Exercise 5 — Generate and run tests
 
 ```text
-Generate isolated ABAP Unit tests for ZCL_TRAVEL_HELPER_###->validate_customer
+Generate isolated ABAP Unit tests for YCL_TRAVEL_HELPER_####->validate_customer
 using SQL doubles for /DMO/CUSTOMER. Cover existing, missing, and initial IDs.
 Show tests for review before activation and execution.
 ```
@@ -66,7 +66,7 @@ Show tests for review before activation and execution.
 Use the [service test cases](../exercises/ex05/README.md#exercise-52-verify-rejection-before-persistence) to prove invalid saves do not insert or change participant rows. After reviewing both classes:
 
 ```text
-Run ABAP Unit tests for ZCL_TRAVEL_HELPER_### and ZCL_TRAVEL_SERVICE_### using
+Run ABAP Unit tests for YCL_TRAVEL_HELPER_#### and YCL_TRAVEL_SERVICE_#### using
 available ADT tools. Report the actual results. Explain any failures and propose
 corrections for review without removing the failed requirements.
 ```

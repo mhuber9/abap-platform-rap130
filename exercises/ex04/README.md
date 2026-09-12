@@ -4,7 +4,7 @@
 
 ## Introduction
 
-In [Exercise 3](../ex03/README.md), you created `ZCL_TRAVEL_HELPER_###->validate_customer`. Now you will ask Copilot to call it from the service before saving a travel. The console application will demonstrate an accepted save and a rejected save.
+In [Exercise 3](../ex03/README.md), you created `YCL_TRAVEL_HELPER_####->validate_customer`. Now you will ask Copilot to call it from the service before saving a travel. The console application will demonstrate an accepted save and a rejected save.
 
 ### Exercises
 
@@ -12,7 +12,7 @@ In [Exercise 3](../ex03/README.md), you created `ZCL_TRAVEL_HELPER_###->validate
 - [4.2 - Run and Test the Enhanced Travel Application](#exercise-42-run-and-test-the-enhanced-travel-application)
 - [Summary & Next Exercise](#summary--next-exercise)
 
-> Replace `###` with your group ID. Review generated changes before activation.
+> Replace `####` with your four-digit group ID. Review generated changes before activation.
 
 ---
 
@@ -22,19 +22,19 @@ In [Exercise 3](../ex03/README.md), you created `ZCL_TRAVEL_HELPER_###->validate
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open `ZCL_TRAVEL_SERVICE_###` and GitHub Copilot Chat in **Agent mode**. Optionally start in **Plan mode** to review the approach.
+1. Open `YCL_TRAVEL_SERVICE_####` and GitHub Copilot Chat in **Agent mode**. Optionally start in **Plan mode** to review the approach.
 
 2. Enter the following prompt:
 
    ```text
-   Add customer validation to save_travel in ZCL_TRAVEL_SERVICE_###.
+   Add customer validation to save_travel in YCL_TRAVEL_SERVICE_####.
    Keep its existing signature and ty_result (success and message).
    After checking that travel_id is not initial, call validate_customer on
-   ZCL_TRAVEL_HELPER_### with is_travel-customer_id.
+   YCL_TRAVEL_HELPER_#### with is_travel-customer_id.
    If the helper returns abap_false, return success = abap_false and
    'Customer <ID> does not exist' (or 'Customer ID is required' for an initial ID).
    Return before any INSERT, UPDATE, or MODIFY. Do not write invalid data.
-   If valid, save the travel to ZTRAVEL### and return the actual SQL outcome.
+   If valid, save the travel to YTRAVEL#### and return the actual SQL outcome.
    Do not commit or roll back here; the executable class owns the transaction.
    Ask me to review the changes before activation.
    ```
@@ -49,7 +49,7 @@ In [Exercise 3](../ex03/README.md), you created `ZCL_TRAVEL_HELPER_###->validate
        RETURN.
      ENDIF.
 
-     DATA(lo_helper) = NEW zcl_travel_helper_###( ).
+     DATA(lo_helper) = NEW ycl_travel_helper_####( ).
      IF lo_helper->validate_customer( is_travel-customer_id ) = abap_false.
        rs_result-message = COND #(
          WHEN is_travel-customer_id IS INITIAL THEN 'Customer ID is required'
@@ -57,7 +57,7 @@ In [Exercise 3](../ex03/README.md), you created `ZCL_TRAVEL_HELPER_###->validate
        RETURN.
      ENDIF.
 
-     MODIFY ztravel### FROM @is_travel.
+     MODIFY ytravel#### FROM @is_travel.
      IF sy-subrc = 0.
        rs_result-success = abap_true.
        rs_result-message = |Travel { is_travel-travel_id } saved|.
@@ -87,10 +87,10 @@ This is a separate editor assistance feature. GitHub Copilot Chat and the ADT MC
   <summary>🔵 Click to expand!</summary>
 
 1. Use the travel ID and existing customer ID you noted in Exercise 3. Ask Copilot to read `/DMO/CUSTOMER` and confirm a non-initial customer ID that is absent. Do not assume `999999` is absent in your system.
-2. Open `ZCL_TRAVEL_APP_###` and submit this prompt after replacing the angle-bracket values as well as `###`:
+2. Open `YCL_TRAVEL_APP_####` and submit this prompt after replacing the angle-bracket values as well as `####`:
 
    ```text
-   Extend ZCL_TRAVEL_APP_### after the existing demo loading and display.
+   Extend YCL_TRAVEL_APP_#### after the existing demo loading and display.
    Use fixed constants for travel ID <travel ID>, valid customer ID <existing ID>,
    and invalid customer ID <confirmed absent ID>. Do not add interactive input.
    Read the selected travel through read_travels. If absent, print a clear message

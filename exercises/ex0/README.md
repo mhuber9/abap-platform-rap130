@@ -17,7 +17,7 @@ In this exercise, you will install Visual Studio Code, install the ADT for Visua
 - [0.5 - Explore the Visual Studio Code User Interface for ABAP Development](#exercise-05-explore-the-visual-studio-code-user-interface-for-abap-development)
 - [Summary](#summary)
 
-> ℹ️ **Reminder**: You will define a **Group ID** in section 0.1. Don't forget to replace all occurrences of the placeholder **`###`** with your group ID throughout all exercises.
+> ℹ️ **Reminder**: You will define a **Group ID** in section 0.1. Use `#######` for your seven-character package identifier and `####` for your group ID in class and table names. Replace the longer placeholder first.
 
 ---
 
@@ -31,9 +31,9 @@ In this exercise, you will install Visual Studio Code, install the ADT for Visua
 
 As the ABAP environment is shared by many participants, every artifact you create follows a naming pattern using a personal suffix.
 
-You will find the placeholder **`###`** in all object names throughout the exercises. Replace it with your group ID.
+Class and table names use **`####`** for your group ID. The package name is **`#######_RAP130_AI`**, where **`#######`** is your seven-character package identifier. These are separate placeholders; keep the `_RAP130_AI` ending exactly as shown.
 
-The group ID can contain **a maximum of 3 characters (numbers and/or letters)** — e.g. `123`, `XY1`, or `ABC`.
+The group ID must contain **exactly four digits** — e.g. `0123`, `1042`, or `2026`. Preserve leading zeros in every object name.
 
 **Check for already-used group IDs:**
 
@@ -41,13 +41,13 @@ The group ID can contain **a maximum of 3 characters (numbers and/or letters)** 
 
 2. Type `>ABAP: Open Object` and press **Enter**.
 
-3. Search for **`zrap130_*###`**, replacing `###` with your chosen suffix. If results appear, the group ID is already taken — try another one.
+3. Search for **`YCL_TRAVEL*####`**, replacing `####` with your chosen suffix. If results appear, the group ID is already taken — try another one.
 
-4. Also search for `ZTRAVEL###`, `ZBOOKING###`, and `ZCL_TRAVEL*###`. Only use the suffix if none of these workshop objects exists. Note it down and use it consistently throughout all exercises.
+4. Also search for `YTRAVEL####`, `YBOOKING####`, and `YCL_TRAVEL*####`. Only use the suffix if none of these workshop objects exists. Note it down and use it consistently throughout all exercises.
 
-> ⚠️ We **do not recommend** using group ID **`000`**. Choose your initials or a number combination that is unique to you.
+> ⚠️ We **do not recommend** using group ID **`0000`**. Choose a four-digit number that is unique to you.
 
-> ⚠️ For SAP-led workshops, a group ID **`###`** will be provided by the instructor.
+> ⚠️ For SAP-led workshops, a group ID **`####`** will be provided by the instructor.
 
 </details>
 
@@ -258,7 +258,7 @@ Before continuing, install **GitHub Copilot** from the VS Code Extensions view, 
 | Find/Replace | **`Ctrl+H`** | **`Cmd+H`** |
 | Run ABAP Unit Tests | **`Ctrl+Shift+F10`** | **`Cmd+Shift+F10`** |
 
-> ℹ️ **Hint**: Use **Find/Replace** (**`Ctrl+H`**) to replace all occurrences of `###` with your group ID at once in any file.
+> ℹ️ **Hint**: When using **Find/Replace** (**`Ctrl+H`**), replace `#######` with your package identifier first, then replace `####` with your four-digit group ID. Replacing the shorter placeholder first would corrupt the package name.
 
 ### Navigating your ABAP system
 
@@ -266,7 +266,7 @@ Before continuing, install **GitHub Copilot** from the VS Code Extensions view, 
 
 2. Navigate through the package hierarchy to find objects.
 
-3. Use **`Ctrl+Shift+A`** to quickly open any object by name — you can use wildcards like `zrap130_*###`.
+3. Use **`Ctrl+Shift+A`** to quickly open any object by name — you can use wildcards like `YCL_TRAVEL*####`.
 
 4. Objects with unsaved backend changes are marked **(L)** — they must be **activated** (**`Ctrl+F3`**) to become active in the system.
 
@@ -278,7 +278,7 @@ Before continuing, install **GitHub Copilot** from the VS Code Extensions view, 
 [^Top of page](#)
 
 You have successfully:
-- Defined your group ID (`###`) for artifact naming
+- Defined your group ID (`####`) for artifact naming
 - Installed Visual Studio Code
 - Installed the ADT for Visual Studio Code extension (which includes the ADT MCP Server)
 - Created an HTTP destination and connected Visual Studio Code to your ABAP Cloud system

@@ -14,14 +14,14 @@ You will learn to supply object names and requirements, inspect source context, 
 - [2.2 - Generate the Travel Tables and Classes](#exercise-22-generate-the-travel-tables-and-classes)
 - [Summary & Next Exercise](#summary--next-exercise)
 
-> Replace every `###` with your group ID. Review AI-generated source before activation; correct errors with Copilot rather than accepting code merely because it was generated.
+> Replace `#######` in the package name with your seven-character package identifier first, then replace `####` in object names with your four-digit group ID. Review AI-generated source before activation; correct errors with Copilot rather than accepting code merely because it was generated.
 
 ---
 
 ## Exercise 2.1: Create the ABAP Package
 [^Top of page](#)
 
-> Create your exercise package **`ZRAP130_AI_###`** in **ADT for Eclipse**. 
+> Create your exercise package **`#######_RAP130_AI`** in **ADT for Eclipse**.
 
 > If the instructor has already created your package, skip to step 6. The Eclipse package-creation steps below remain the setup fallback; the application exercises run in VS Code.
 
@@ -30,17 +30,17 @@ You will learn to supply object names and requirements, inspect source context, 
 
 1. Open **Eclipse ADT** and connect to your ABAP system.
 
-2. In the **Project Explorer**, expand your system connection and right-click on **`ZLOCAL`** → **New → ABAP Package**.
+2. In the **Project Explorer**, expand your system connection and right-click on **`YLOCAL`** → **New → ABAP Package**.
 
 3. Fill in the package details:
-   - **Name**: `ZRAP130_AI_###` (replace `###` with your group ID)
-   - **Description**: `Travel AI Package ###`
-   - **Superpackage**: `ZLOCAL`
+   - **Name**: `#######_RAP130_AI` (replace `#######` with your seven-character package identifier)
+   - **Description**: `Travel AI Package ####`
+   - **Superpackage**: `YLOCAL`
    - **Package Type**: `Development`
 
 4. Click **Next** (or **Finish**), and assign the package to a transport request if prompted.
 
-5. Verify the package **`ZRAP130_AI_###`** appears in the Project Explorer under `ZLOCAL`.
+5. Verify the package **`#######_RAP130_AI`** appears in the Project Explorer under `YLOCAL`.
 
 6. Switch back to **Visual Studio Code**. You can add the created package to your workspace.
 
@@ -48,7 +48,7 @@ You will learn to supply object names and requirements, inspect source context, 
 
    ![Add package to workspace](images/ex02_add_package_workspace.png)
 
-   Fill with your package's name `ZRAP130_AI_###` and then press **Enter**
+   Fill with your package's name `#######_RAP130_AI` and then press **Enter**
 
    ![Add package to workspace](images/ex02_add_package_workspace_2.png)
 
@@ -83,37 +83,37 @@ You will learn to supply object names and requirements, inspect source context, 
 
 ### Step 2: Create the application
 
-4. Replace `###` in the following prompt, then send it in Agent mode:
+4. Replace `#######` with your package identifier first, then `####` with your four-digit group ID in the following prompt. Send it in Agent mode:
 
    ```text
-   Create a plain ABAP Cloud Travel and Booking application in package ZRAP130_AI_###.
+   Create a plain ABAP Cloud Travel and Booking application in package #######_RAP130_AI.
    Use ADT object-creation tools where supported and edit the source in the ADT
    virtual workspace. If an object type cannot be created with the available tools,
    tell me which object to create using ABAP: Create New ABAP Object, then continue.
 
    Create these objects with exactly these names:
-   - ZTRAVEL###: client-dependent transparent table based on /DMO/TRAVEL_DATA.
+   - YTRAVEL####: client-dependent transparent table based on /DMO/TRAVEL_DATA.
      Keys: client and travel_id. Retain the reference travel business fields,
      including customer_id, dates, amounts, currency, description, and overall_status.
-   - ZBOOKING###: client-dependent transparent table based on /DMO/BOOKING_DATA.
+   - YBOOKING####: client-dependent transparent table based on /DMO/BOOKING_DATA.
      Keys: client, travel_id, booking_id. Retain the reference booking business fields.
-     Each booking must refer to a travel in ZTRAVEL### in the same client.
+     Each booking must refer to a travel in YTRAVEL#### in the same client.
      Inspect the actual structures; do not duplicate keys when expanding their fields.
      Preserve amount/currency annotations in both table definitions.
-   - ZCL_TRAVEL_SERVICE_###: public final class with these public types and methods:
-     tt_travel = standard table of ZTRAVEL### with empty key.
-     tt_booking = standard table of ZBOOKING### with empty key.
+   - YCL_TRAVEL_SERVICE_####: public final class with these public types and methods:
+     tt_travel = standard table of YTRAVEL#### with empty key.
+     tt_booking = standard table of YBOOKING#### with empty key.
      ty_result = structure with success TYPE abap_bool and message TYPE string.
      read_travels: return rt_travels TYPE tt_travel, ordered by travel_id.
      read_bookings: import iv_travel_id TYPE /dmo/travel_id;
        return rt_bookings TYPE tt_booking, ordered by booking_id for that travel.
-     save_travel: import is_travel TYPE ZTRAVEL###;
+     save_travel: import is_travel TYPE YTRAVEL####;
        return rs_result TYPE ty_result. Reject an initial travel_id; otherwise
        insert or update the supplied travel with ABAP SQL and report the outcome.
        Customer validation will be added in Exercise 4; do not add it yet.
      load_demo_data: return rv_message TYPE string. For now return
        'Demo loading will be implemented in Exercise 3' without writing data.
-   - ZCL_TRAVEL_APP_###: public final class implementing IF_OO_ADT_CLASSRUN.
+   - YCL_TRAVEL_APP_####: public final class implementing IF_OO_ADT_CLASSRUN.
      In main, instantiate the service, call read_travels, and use out->write to
      print 'Travel application ready' and the travel count. Do not save data yet.
 
@@ -132,25 +132,25 @@ You will learn to supply object names and requirements, inspect source context, 
 
    | Object | Review focus |
    |--------|--------------|
-   | `ZTRAVEL###` | Client and travel key; customer and currency fields |
-   | `ZBOOKING###` | Client, travel, and booking keys; matching Travel relationship |
-   | `ZCL_TRAVEL_SERVICE_###` | Public method contract above; SQL restricted to participant tables |
-   | `ZCL_TRAVEL_APP_###` | `IF_OO_ADT_CLASSRUN`, service call, and `out->write` |
+   | `YTRAVEL####` | Client and travel key; customer and currency fields |
+   | `YBOOKING####` | Client, travel, and booking keys; matching Travel relationship |
+   | `YCL_TRAVEL_SERVICE_####` | Public method contract above; SQL restricted to participant tables |
+   | `YCL_TRAVEL_APP_####` | `IF_OO_ADT_CLASSRUN`, service call, and `out->write` |
 
 7. Ask Copilot to explain the dependency order. Tables must be active before the service that uses their row types; the service must be active before the executable class.
 
    The executable class at this stage should be as small as this example:
 
    ```abap
-   CLASS zcl_travel_app_### DEFINITION
+   CLASS ycl_travel_app_#### DEFINITION
      PUBLIC FINAL CREATE PUBLIC.
      PUBLIC SECTION.
        INTERFACES if_oo_adt_classrun.
    ENDCLASS.
 
-   CLASS zcl_travel_app_### IMPLEMENTATION.
+   CLASS ycl_travel_app_#### IMPLEMENTATION.
      METHOD if_oo_adt_classrun~main.
-       DATA(lo_service) = NEW zcl_travel_service_###( ).
+       DATA(lo_service) = NEW ycl_travel_service_####( ).
        DATA(lt_travels) = lo_service->read_travels( ).
        out->write( 'Travel application ready' ).
        out->write( |Travel count: { lines( lt_travels ) }| ).

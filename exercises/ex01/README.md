@@ -17,7 +17,7 @@ The ADT MCP Server exposes ABAP development capabilities as **Model Context Prot
 - [1.3 - Verify the ADT MCP Tools in your coding agent](#exercise-13-verify-the-adt-mcp-tools-in-your-coding-agent)
 - [Summary & Next Exercise](#summary--next-exercise)
 
-> ℹ️ **Reminder**: Don't forget to replace all occurrences of the placeholder **`###`** with your group ID in the exercise steps below.
+> ℹ️ **Reminder**: Don't forget to replace all occurrences of the placeholder **`####`** with your four-digit group ID in the exercise steps below.
 
 ---
 

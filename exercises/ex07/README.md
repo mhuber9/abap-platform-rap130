@@ -12,7 +12,7 @@ A custom agent gives Copilot reusable context for the Travel application: object
 - [7.2 - Adapt the Instructions for Other Coding Agents](#exercise-72-adapt-the-instructions-for-other-coding-agents)
 - [Summary](#summary)
 
-> Replace `###` with your group ID before saving the agent instructions.
+> Replace `#######` with your seven-character package identifier first, then `####` with your four-digit group ID before saving the agent instructions.
 
 ---
 
@@ -24,7 +24,7 @@ A custom agent gives Copilot reusable context for the Travel application: object
 
 1. Open Copilot Chat and use **Configure Custom Agents**, or run **Chat: New Custom Agent** from the Command Palette.
 2. Choose a workspace location and name the agent `travel-workshop`. Store it as `.github/agents/travel-workshop.agent.md` in a local workspace folder. If your workspace contains only the ADT virtual destination, choose a user-level location in the creation dialog instead.
-3. Paste this definition, replacing `###`:
+3. Paste this definition, replacing `#######` with your package identifier first and `####` with your four-digit group ID:
 
    ```markdown
    ---
@@ -36,11 +36,11 @@ A custom agent gives Copilot reusable context for the Travel application: object
    in Visual Studio Code with GitHub Copilot and the ADT MCP Server.
 
    ## Application context
-   - My participant suffix is ###. Package: ZRAP130_AI_###.
-   - Tables: ZTRAVEL### and ZBOOKING###, based on /DMO/TRAVEL_DATA and /DMO/BOOKING_DATA.
-   - ZCL_TRAVEL_APP_### implements IF_OO_ADT_CLASSRUN and prints with out->write.
-   - ZCL_TRAVEL_SERVICE_### owns load_demo_data, read_travels, read_bookings, and save_travel.
-   - ZCL_TRAVEL_HELPER_### provides validate_customer.
+   - My four-digit participant suffix is ####. Package: #######_RAP130_AI.
+   - Tables: YTRAVEL#### and YBOOKING####, based on /DMO/TRAVEL_DATA and /DMO/BOOKING_DATA.
+   - YCL_TRAVEL_APP_#### implements IF_OO_ADT_CLASSRUN and prints with out->write.
+   - YCL_TRAVEL_SERVICE_#### owns load_demo_data, read_travels, read_bookings, and save_travel.
+   - YCL_TRAVEL_HELPER_#### provides validate_customer.
 
    ## Working rules
    - Inspect available ADT tools and existing source before making changes.
