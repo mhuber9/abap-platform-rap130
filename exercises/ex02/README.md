@@ -48,7 +48,7 @@ You will learn to supply object names and requirements, inspect source context, 
 
 The reference objects are in package **`/DMO/FLIGHT_LEGACY`** in your ABAP system. Open this package to explore their definitions.
 
-1. Open **GitHub Copilot Chat** and select **Agent mode**. You can first use **Plan mode** to review the proposed changes.
+1. Open **GitHub Copilot Chat** and select **`abap-developer`** in the agent dropdown.
 
 2. Enter this prompt:
 
@@ -65,7 +65,13 @@ The reference objects are in package **`/DMO/FLIGHT_LEGACY`** in your ABAP syste
 
 ### Step 2: Create the application
 
-4. Replace `####` with your four-digit group ID in the following prompt. Keep `$TMP` unchanged and send it in Agent mode:
+Before sending the creation prompt, tell **`abap-developer`** your group ID in the chat. Replace `<your_id>` with your four-digit ID, for example `0123`:
+
+```text
+My group ID is <your_id>. Use this value wherever #### appears in object names, preserving any leading zeros.
+```
+
+4. Replace `####` with your four-digit group ID in the following prompt. Keep `$TMP` unchanged and send it using **`abap-developer`**:
 
    ```text
    Create a plain ABAP Cloud Travel and Booking application in the existing local package $TMP.
@@ -151,7 +157,22 @@ The reference objects are in package **`/DMO/FLIGHT_LEGACY`** in your ABAP syste
 
 10. Refresh your package in the Explorer and open each of the four objects. Confirm that the public method signatures match the prompt; later exercises use these exact names.
 
-> ✅ Success: both tables and both classes are active. The application is ready for sample loading and console execution in Exercise 3.
+### Step 5: Run the Travel App
+
+11. Open `YCL_TRAVEL_APP_####` in the editor, replacing `####` with your four-digit group ID.
+
+12. Open the Command Palette and select **ABAP: Run ABAP Application (Console)**. Select the class if prompted.
+
+13. Inspect the ABAP console output in the **Output** panel. For newly created, empty tables, expect:
+
+    ```text
+    Travel application ready
+    Travel count: 0
+    ```
+
+14. Confirm that the application finishes without errors. A count of zero is expected: you will load demo data in Exercise 3. If your participant table already contains data, the output shows its current travel count instead.
+
+> ✅ Success: both tables and both classes are active, and the Travel app runs successfully in the console. Continue with sample loading in Exercise 3.
 
 </details>
 
@@ -160,6 +181,6 @@ The reference objects are in package **`/DMO/FLIGHT_LEGACY`** in your ABAP syste
 ## Summary & Next Exercise
 [^Top of page](#)
 
-You opened the existing local package `$TMP`, generated Travel and Booking tables and ABAP classes with Copilot, reviewed their source, and activated the dependent objects.
+You opened the existing local package `$TMP`, generated Travel and Booking tables and ABAP classes with Copilot, reviewed their source, activated the dependent objects, and ran the Travel app in the console.
 
 Continue with **[Exercise 3: Run the Travel Application](../ex03/README.md)**.

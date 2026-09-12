@@ -137,7 +137,7 @@ If the ADT MCP Server does not appear or fails to start:
 ## Exercise 1.3: Verify the ADT MCP Tools in your coding agent
 [^Top of page](#)
 
-> Open your coding agent in agent mode and confirm that the ADT MCP tools are loaded and available.
+> Select **`abap-developer`** in GitHub Copilot Chat and confirm that the ADT MCP tools are loaded and available.
 
 <details>
   <summary>🔵 Click to expand!</summary>
@@ -146,9 +146,9 @@ If the ADT MCP Server does not appear or fails to start:
    - Click the **Copilot icon** in the Activity Bar (left), or
    - Press **`Ctrl+Shift+I`** (macOS: **`Cmd+Shift+I`**)
 
-2. Switch the chat mode to **"Agent"** in the chat dropdown.
+2. Select **`abap-developer`** in the chat agent dropdown.
 
-   > ℹ️ **Note**: MCP tools are only available in **Agent mode** — not in the standard Ask or Edit modes.
+   > ℹ️ Use **`abap-developer`** throughout the application exercises. If it is missing from the dropdown, ask the instructor to provide the workshop agent configuration before continuing.
 
 3. Click the **"Configure Tools"** (tools wrench icon) button in the Copilot chat input bar.
 
@@ -186,7 +186,7 @@ If the ADT MCP Server does not appear or fails to start:
 Now that you've:
 - Enabled the ADT MCP Server in Visual Studio Code extension settings
 - Verified the server is running (via notification or `MCP: List Servers`)
-- Confirmed that the ADT MCP tools are visible and callable from your coding agent in agent mode
+- Confirmed that the ADT MCP tools are visible and callable from **`abap-developer`** in GitHub Copilot Chat
 
 you can continue with the next exercise — **[Exercise 2: Generate the ABAP Travel Application](../ex02/README.md)**
 

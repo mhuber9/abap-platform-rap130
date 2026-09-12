@@ -23,7 +23,7 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open `YCL_TRAVEL_SERVICE_####` and ask Copilot in Agent mode:
+1. Open `YCL_TRAVEL_SERVICE_####` and ask Copilot using **`abap-developer`**:
 
    ```text
    Implement load_demo_data in YCL_TRAVEL_SERVICE_####.

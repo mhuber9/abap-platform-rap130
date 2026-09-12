@@ -22,7 +22,7 @@ In [Exercise 3](../ex03/README.md), you created `YCL_TRAVEL_HELPER_####->validat
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open `YCL_TRAVEL_SERVICE_####` and GitHub Copilot Chat in **Agent mode**. Optionally start in **Plan mode** to review the approach.
+1. Open `YCL_TRAVEL_SERVICE_####` and GitHub Copilot Chat, then select **`abap-developer`** in the agent dropdown.
 
 2. Enter the following prompt:
 

@@ -1,6 +1,6 @@
 # Prompt Guidelines for the ABAP Travel Workshop
 
-Use these prompts with **GitHub Copilot and ADT MCP tools**. Use package `$TMP` and replace `####` in class and table names with your four-digit participant suffix before sending. The linked exercises contain the complete specifications; use those for initial creation instead of asking Copilot to invent the application contract.
+Use these prompts with **`abap-developer`** selected in **GitHub Copilot Chat**, connected to the **ADT MCP tools**. Use package `$TMP` and replace `####` in class and table names with your four-digit participant suffix before sending. The linked exercises contain the complete specifications; use those for initial creation instead of asking Copilot to invent the application contract.
 
 ## General principles
 

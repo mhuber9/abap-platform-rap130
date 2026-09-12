@@ -120,7 +120,7 @@ The group ID must contain **exactly four digits** — e.g. `0123`, `1042`, or `2
 
 ---
 
-Before continuing, install **GitHub Copilot** from the VS Code Extensions view, sign in with your GitHub account, and verify that Copilot Chat and Agent mode are available with your account.
+Before continuing, install **GitHub Copilot** from the VS Code Extensions view, sign in with your GitHub account, and verify that Copilot Chat is available with your account. Select **`abap-developer`** in the agent dropdown; ask the instructor for its configuration if it is missing.
 
 ## Exercise 0.4: Connect Visual Studio Code to Your ABAP System
 [^Top of page](#)

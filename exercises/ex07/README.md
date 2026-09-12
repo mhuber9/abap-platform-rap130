@@ -4,6 +4,8 @@
 
 ## Introduction
 
+The application exercises use **`abap-developer`**. In this optional exercise, you will experiment with a separate custom agent without replacing that configuration.
+
 A custom agent gives Copilot reusable context for the Travel application: object names, package, ABAP Cloud conventions, and the review workflow. You will create one and verify that it understands your application without repeating every detail.
 
 ### Exercises
@@ -67,6 +69,8 @@ A custom agent gives Copilot reusable context for the Travel application: object
    ```
 
 6. Confirm that Copilot names your suffixed objects and explains the early return before SQL persistence. If it does not, check which agent is selected and whether your definition was loaded.
+
+7. When finished, select **`abap-developer`** again before returning to the application exercises.
 
 See the official [VS Code custom-agent documentation](https://code.visualstudio.com/docs/agent-customization/custom-agents) for supported file locations and creation commands.
 

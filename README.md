@@ -21,7 +21,7 @@ The repository identifier retains `RAP130` for continuity. The exercises use no 
 
 - Familiarity with ABAP classes, basic SQL, and ABAP development; the focus is the Copilot workflow.
 - [Visual Studio Code](https://code.visualstudio.com/) and [SAP ADT for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=SAPSE.adt-vscode), including the ADT MCP Server.
-- GitHub Copilot with access to Chat and Agent mode, signed in and able to work with the ADT virtual workspace.
+- GitHub Copilot Chat with the **`abap-developer`** agent available, signed in and able to work with the ADT virtual workspace. Ask the instructor for the agent configuration if it is missing.
 - An **SAP BTP ABAP Environment**, **SAP S/4HANA Cloud Public Edition**, or suitable **SAP S/4HANA Cloud Private Edition** development system supporting the installed ADT extension and its MCP capabilities. Confirm backend/version requirements with your instructor and the linked SAP documentation.
 - The [ABAP Flight Reference Scenario](https://github.com/SAP-samples/abap-platform-refscen-flight) installed with `/DMO/TRAVEL_DATA`, `/DMO/BOOKING_DATA`, and populated `/DMO/TRAVEL`, `/DMO/BOOKING`, and `/DMO/CUSTOMER` source tables accessible to workshop code.
 - Authorization to create and activate participant objects, run console classes and ABAP Unit tests, and optionally debug. The ABAP SQL test double framework must be available.
