@@ -10,48 +10,27 @@ You will learn to supply object names and requirements, inspect source context, 
 
 ### Exercises
 
-- [2.1 - Create the ABAP Package](#exercise-21-create-the-abap-package)
+- [2.1 - Open the Existing Local Package](#exercise-21-open-the-existing-local-package)
 - [2.2 - Generate the Travel Tables and Classes](#exercise-22-generate-the-travel-tables-and-classes)
 - [Summary & Next Exercise](#summary--next-exercise)
 
-> Replace `#######` in the package name with your seven-character package identifier first, then replace `####` in object names with your four-digit group ID. Review AI-generated source before activation; correct errors with Copilot rather than accepting code merely because it was generated.
+> Use package `$TMP` and replace `####` in object names with your four-digit group ID. Review AI-generated source before activation; correct errors with Copilot rather than accepting code merely because it was generated.
 
 ---
 
-## Exercise 2.1: Create the ABAP Package
+## Exercise 2.1: Open the Existing Local Package
 [^Top of page](#)
 
-> Create your exercise package **`#######_RAP130_AI`** in **ADT for Eclipse**.
-
-> If the instructor has already created your package, skip to step 6. The Eclipse package-creation steps below remain the setup fallback; the application exercises run in VS Code.
+> Use the existing local package **`$TMP`** for all objects in this workshop.
 
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open **Eclipse ADT** and connect to your ABAP system.
-
-2. In the **Project Explorer**, expand your system connection and right-click on **`YLOCAL`** → **New → ABAP Package**.
-
-3. Fill in the package details:
-   - **Name**: `#######_RAP130_AI` (replace `#######` with your seven-character package identifier)
-   - **Description**: `Travel AI Package ####`
-   - **Superpackage**: `YLOCAL`
-   - **Package Type**: `Development`
-
-4. Click **Next** (or **Finish**), and assign the package to a transport request if prompted.
-
-5. Verify the package **`#######_RAP130_AI`** appears in the Project Explorer under `YLOCAL`.
-
-6. Switch back to **Visual Studio Code**. You can add the created package to your workspace.
-
-   Open the **Command Palette** with **`Ctrl+Shift+P`** (macOS: **`Cmd+Shift+P`**) and Type `>ABAP: Add Package as Folder to Workspace` and press **Enter**.
-
-   ![Add package to workspace](images/ex02_add_package_workspace.png)
-
-   Fill with your package's name `#######_RAP130_AI` and then press **Enter**
-
-   ![Add package to workspace](images/ex02_add_package_workspace_2.png)
-
+1. In **Visual Studio Code**, open the Command Palette with **Ctrl+Shift+P** (macOS: **Cmd+Shift+P**).
+2. Select **ABAP: Add Package as Folder to Workspace** and choose your connected ABAP destination if prompted.
+3. Enter **`$TMP`** and add it to the workspace. If it is already present, open its existing folder.
+4. Use `$TMP` as the package whenever creating a table or class. Do not create a new package or transport request for these local workshop objects.
+5. Check your four-digit suffix against the existing objects as described in [Getting Started](../ex0/README.md#exercise-01-define-your-group-id). Other participants may also use `$TMP`.
 
 </details>
 
@@ -83,10 +62,11 @@ You will learn to supply object names and requirements, inspect source context, 
 
 ### Step 2: Create the application
 
-4. Replace `#######` with your package identifier first, then `####` with your four-digit group ID in the following prompt. Send it in Agent mode:
+4. Replace `####` with your four-digit group ID in the following prompt. Keep `$TMP` unchanged and send it in Agent mode:
 
    ```text
-   Create a plain ABAP Cloud Travel and Booking application in package #######_RAP130_AI.
+   Create a plain ABAP Cloud Travel and Booking application in the existing local package $TMP.
+   Do not create a package or transport request.
    Use ADT object-creation tools where supported and edit the source in the ADT
    virtual workspace. If an object type cannot be created with the available tools,
    tell me which object to create using ABAP: Create New ABAP Object, then continue.
@@ -177,6 +157,6 @@ You will learn to supply object names and requirements, inspect source context, 
 ## Summary & Next Exercise
 [^Top of page](#)
 
-You created a package, generated Travel and Booking tables and ABAP classes with Copilot, reviewed their source, and activated the dependent objects.
+You opened the existing local package `$TMP`, generated Travel and Booking tables and ABAP classes with Copilot, reviewed their source, and activated the dependent objects.
 
 Continue with **[Exercise 3: Run the Travel Application](../ex03/README.md)**.

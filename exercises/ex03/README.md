@@ -13,7 +13,7 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
 - [3.3 - Create the Customer-Validation Helper](#exercise-33-create-the-customer-validation-helper)
 - [Summary & Next Exercise](#summary--next-exercise)
 
-> Replace `#######` in the package name with your seven-character package identifier first, then `####` in class and table names with your four-digit group ID. Use only your participant tables for writes.
+> Use package `$TMP` and replace `####` in class and table names with your four-digit group ID. Use only your participant tables for writes.
 
 ---
 
@@ -102,7 +102,7 @@ In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. N
   <summary>🔵 Click to expand!</summary>
 
 1. In the Command Palette, choose **ABAP: Create New ABAP Object**, then **Class**.
-2. Enter package `#######_RAP130_AI`, name `YCL_TRAVEL_HELPER_####`, and description `Travel customer validation ####`. Leave superclass and interface empty.
+2. Enter package `$TMP`, name `YCL_TRAVEL_HELPER_####`, and description `Travel customer validation ####`. Leave superclass and interface empty.
 3. Replace the class source with the following, substituting your group ID:
 
    ```abap

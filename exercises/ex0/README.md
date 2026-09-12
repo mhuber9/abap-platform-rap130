@@ -17,7 +17,7 @@ In this exercise, you will install Visual Studio Code, install the ADT for Visua
 - [0.5 - Explore the Visual Studio Code User Interface for ABAP Development](#exercise-05-explore-the-visual-studio-code-user-interface-for-abap-development)
 - [Summary](#summary)
 
-> ℹ️ **Reminder**: You will define a **Group ID** in section 0.1. Use `#######` for your seven-character package identifier and `####` for your group ID in class and table names. Replace the longer placeholder first.
+> ℹ️ **Reminder**: You will define a **Group ID** in section 0.1. Use `####` for your four-digit group ID in class and table names. All workshop objects belong to the existing package `$TMP`.
 
 ---
 
@@ -31,7 +31,7 @@ In this exercise, you will install Visual Studio Code, install the ADT for Visua
 
 As the ABAP environment is shared by many participants, every artifact you create follows a naming pattern using a personal suffix.
 
-Class and table names use **`####`** for your group ID. The package name is **`#######_RAP130_AI`**, where **`#######`** is your seven-character package identifier. These are separate placeholders; keep the `_RAP130_AI` ending exactly as shown.
+Class and table names use **`####`** for your four-digit group ID. Create all workshop objects in the existing local package **`$TMP`**. No package creation is required.
 
 The group ID must contain **exactly four digits** — e.g. `0123`, `1042`, or `2026`. Preserve leading zeros in every object name.
 
@@ -258,7 +258,7 @@ Before continuing, install **GitHub Copilot** from the VS Code Extensions view, 
 | Find/Replace | **`Ctrl+H`** | **`Cmd+H`** |
 | Run ABAP Unit Tests | **`Ctrl+Shift+F10`** | **`Cmd+Shift+F10`** |
 
-> ℹ️ **Hint**: When using **Find/Replace** (**`Ctrl+H`**), replace `#######` with your package identifier first, then replace `####` with your four-digit group ID. Replacing the shorter placeholder first would corrupt the package name.
+> ℹ️ **Hint**: Use **Find/Replace** (**`Ctrl+H`**) to replace `####` with your four-digit group ID. Keep the package name `$TMP` unchanged.
 
 ### Navigating your ABAP system
 

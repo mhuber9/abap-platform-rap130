@@ -1,10 +1,10 @@
 # Prompt Guidelines for the ABAP Travel Workshop
 
-Use these prompts with **GitHub Copilot and ADT MCP tools**. Replace `#######` in the package name with your seven-character package identifier first, then replace `####` in class and table names with your four-digit participant suffix before sending. The linked exercises contain the complete specifications; use those for initial creation instead of asking Copilot to invent the application contract.
+Use these prompts with **GitHub Copilot and ADT MCP tools**. Use package `$TMP` and replace `####` in class and table names with your four-digit participant suffix before sending. The linked exercises contain the complete specifications; use those for initial creation instead of asking Copilot to invent the application contract.
 
 ## General principles
 
-- Specify exact object names, package `#######_RAP130_AI`, and the connected destination.
+- Specify exact object names, package `$TMP`, and the connected destination.
 - Inspect existing source and available tools before making changes.
 - Use ADT object-creation tools where supported, and edit source through the ADT virtual workspace.
 - Review the source before activation and tests. Review proposed fixes rather than weakening failing assertions.

@@ -8,7 +8,7 @@ In the previous exercise, you installed Visual Studio Code and the ADT for Visua
 
 In this exercise, you will enable the **ADT MCP Server** that is built into the ADT for Visual Studio Code extension, and verify that the MCP tools are available.
 
-The ADT MCP Server exposes ABAP development capabilities as **Model Context Protocol (MCP) tools** — allowing you to create ABAP objects, work with transports, activate objects, and run unit tests through natural language prompts. For more information, see [Agentic AI for ABAP Development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agentic-ai-development?locale=en-US)
+The ADT MCP Server exposes ABAP development capabilities as **Model Context Protocol (MCP) tools** — allowing you to create ABAP objects, activate objects, and run unit tests through natural language prompts. For more information, see [Agentic AI for ABAP Development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agentic-ai-development?locale=en-US)
 
 ### Exercises
 
@@ -34,8 +34,6 @@ When enabled, the MCP server exposes a set of ABAP development tools to any MCP-
 | `abap_creation-create_object` | Creates ABAP development objects |
 | `abap_activate-objects` | Activates ABAP objects in the backend system |
 | `abap_run_unit_tests` | Runs ABAP unit tests |
-| `abap_transport-create` | Creates a transport request when required |
-| `abap_transport-get` | Gets relevant transport requests for an object |
 
 Copilot edits ABAP source through the ADT virtual workspace and uses the available MCP tools for backend operations. Object creation and source editing are separate steps; there is no application generator in this exercise.
 

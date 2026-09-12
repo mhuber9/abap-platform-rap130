@@ -6,7 +6,7 @@ This repository contains a hands-on workshop for ABAP developers learning **GitH
 
 You will build a Travel and Booking application using **ordinary ABAP Cloud classes and database tables**. An executable class displays data and save results in the **ABAP Console**. Copilot and the **ADT MCP Server** help you create objects, enhance code, and generate unit tests.
 
-The repository and package identifiers retain `RAP130` for continuity. The exercises use no RAP runtime or Fiori UI.
+The repository identifier retains `RAP130` for continuity. The exercises use no RAP runtime or Fiori UI.
 
 **Table of Contents**
 
@@ -25,7 +25,7 @@ The repository and package identifiers retain `RAP130` for continuity. The exerc
 - An **SAP BTP ABAP Environment**, **SAP S/4HANA Cloud Public Edition**, or suitable **SAP S/4HANA Cloud Private Edition** development system supporting the installed ADT extension and its MCP capabilities. Confirm backend/version requirements with your instructor and the linked SAP documentation.
 - The [ABAP Flight Reference Scenario](https://github.com/SAP-samples/abap-platform-refscen-flight) installed with `/DMO/TRAVEL_DATA`, `/DMO/BOOKING_DATA`, and populated `/DMO/TRAVEL`, `/DMO/BOOKING`, and `/DMO/CUSTOMER` source tables accessible to workshop code.
 - Authorization to create and activate participant objects, run console classes and ABAP Unit tests, and optionally debug. The ABAP SQL test double framework must be available.
-- Package `#######_RAP130_AI`, supplied by the instructor or created using the Eclipse ADT fallback in Exercise 2. Application development then takes place in VS Code.
+- Access to the existing local package `$TMP` for creating workshop objects. No package creation or Eclipse setup is required for these exercises.
 
 Joule predictive code completion is an optional activity in Exercise 4 and requires its own enabled capabilities. Ask the instructor to confirm any backend entitlements required for ADT agentic tools; using Copilot does not replace those system prerequisites.
 
@@ -52,7 +52,7 @@ The executable class `YCL_TRAVEL_APP_####` calls `YCL_TRAVEL_SERVICE_####`; the 
 
 ## Exercises
 
-Complete the mandatory exercises in order. Replace `#######` in the package name with your seven-character package identifier, and `####` in class and table names with your four-digit participant suffix. Replace the longer placeholder first. [Prompt guidelines](resources/prompt-guidelines.md) provide reusable prompts and links to the complete specifications.
+Complete the mandatory exercises in order. Use package `$TMP` and replace `####` in class and table names with your four-digit participant suffix. [Prompt guidelines](resources/prompt-guidelines.md) provide reusable prompts and links to the complete specifications.
 
 | Exercise | Learning focus |
 |----------|----------------|
