@@ -27,7 +27,7 @@ The repository identifier retains `RAP130` for continuity. The exercises use no 
 - Authorization to create and activate participant objects, run console classes and ABAP Unit tests, and optionally debug. The ABAP SQL test double framework must be available.
 - Access to the existing local package `$TMP` for creating workshop objects. No package creation or Eclipse setup is required for these exercises.
 
-Joule predictive code completion is an optional activity in Exercise 4 and requires its own enabled capabilities. Ask the instructor to confirm any backend entitlements required for ADT agentic tools; using Copilot does not replace those system prerequisites.
+Ask the instructor to confirm any backend entitlements required for ADT agentic tools; using Copilot does not replace those system prerequisites.
 
 > For SAP-led events, the instructors provide system access details and participant group IDs.
 

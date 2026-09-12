@@ -70,12 +70,6 @@ In [Exercise 3](../ex03/README.md), you created `YCL_TRAVEL_HELPER_####->validat
 4. Confirm that the rejected path returns before `MODIFY`, and that neither the helper nor the service commits. Database exceptions are handled by the executable caller.
 5. Approve activation after reviewing the source and inspect the Problems panel.
 
-### Optional: Joule predictive code completion
-
-If your system and account have Joule predictive code completion enabled, you can also try completing part of the helper call in the editor. Search VS Code settings for `adt code completion` and enable the available Joule predictive completion option. Review its suggestion against the same validation requirements.
-
-This is a separate editor assistance feature. GitHub Copilot Chat and the ADT MCP workflow above remain the core exercise; Joule completion is optional.
-
 </details>
 
 ---
@@ -86,13 +80,13 @@ This is a separate editor assistance feature. GitHub Copilot Chat and the ADT MC
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Use the travel ID and existing customer ID you noted in Exercise 3. Ask Copilot to read `/DMO/CUSTOMER` and confirm a non-initial customer ID that is absent. Do not assume `999999` is absent in your system.
+1. Use the travel ID and existing customer ID you noted in Exercise 3. Use `999999` as the customer ID for the invalid-save example.
 2. Open `YCL_TRAVEL_APP_####` and submit this prompt after replacing the angle-bracket values as well as `####`:
 
    ```text
    Extend YCL_TRAVEL_APP_#### after the existing demo loading and display.
    Use fixed constants for travel ID <travel ID>, valid customer ID <existing ID>,
-   and invalid customer ID <confirmed absent ID>. Do not add interactive input.
+   and invalid customer ID '999999'. Do not add interactive input.
    Read the selected travel through read_travels. If absent, print a clear message
    and return without saving. Preserve the full row as the starting value.
 
@@ -120,10 +114,12 @@ This is a separate editor assistance feature. GitHub Copilot Chat and the ADT MC
    Demo data already present; loading skipped
    ... Travel and Booking output ...
    Valid save: success = X; Travel <ID> saved
-   Invalid save: success = <false>; Customer <invalid ID> does not exist
+   Invalid save: success = <false>; Customer 999999 does not exist
    Stored row unchanged before rollback: X
    Final travel: <original valid customer>, Copilot validation demo
    ```
+
+If `999999` exists in your system, use a different customer ID for the invalid-save example and rerun.
 
 5. Confirm that the bookings remain attached to the same travel. Run again and verify that sample loading does not reset the saved description.
 
