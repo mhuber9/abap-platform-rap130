@@ -1,129 +1,134 @@
-[Home - RAP130 - Build SAP Fiori Apps with ABAP Cloud and SAP Joule for Developers in Visual Studio Code](../../README.md)
+[Home - Build an ABAP Travel Application with GitHub Copilot and ADT in Visual Studio Code](../../README.md)
 
-# Exercise 3: Publish and Preview the Travel App
+# Exercise 3: Run the Travel Application
 
 ## Introduction
 
-In the previous exercise, you generated a complete transactional RAP UI service for Travel and Booking using your coding agent and the ADT MCP tools (_see [Exercise 2](../ex02/README.md)_).
-
-In this exercise, you will publish the local service endpoint of your OData V4 service binding and open the **SAP Fiori elements App Preview** in a browser to see the running Travel application.
+In [Exercise 2](../ex02/README.md), you created the Travel tables and classes. Now you will load a small sample, display travels with their bookings in the ABAP Console, and create the customer-validation helper used in the next exercise.
 
 ### Exercises
 
-- [3.1 - Publish the Service Binding](#exercise-31-publish-the-service-binding)
-- [3.2 - Preview the Travel App in the Browser](#exercise-32-preview-the-travel-app-in-the-browser)
-- [3.3 - Create ABAP helper class](#exercise-33-create-abap-helper-class)
+- [3.1 - Load Travel and Booking Demo Data](#exercise-31-load-travel-and-booking-demo-data)
+- [3.2 - Run and Inspect Console Output](#exercise-32-run-and-inspect-console-output)
+- [3.3 - Create the Customer-Validation Helper](#exercise-33-create-the-customer-validation-helper)
 - [Summary & Next Exercise](#summary--next-exercise)
 
-> ℹ️ **Reminder**: Don't forget to replace all occurrences of the placeholder **`###`** with your group ID in the exercise steps below.
+> Replace `###` with your group ID. Use only your participant tables for writes.
 
 ---
 
-## Exercise 3.1: Publish the Service Binding
+## Exercise 3.1: Load Travel and Booking Demo Data
 [^Top of page](#)
-
-> Publish the local service endpoint of the service binding **`ZUI_TRAVEL_O4###`** to make the OData service available for preview and consumption.
 
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open the service binding using **`Ctrl+Shift+A`** and search for **`ZUI_TRAVEL_O4###`**. Select the entry with type **Service Binding** (SRVB).
+1. Open `ZCL_TRAVEL_SERVICE_###` and ask Copilot in Agent mode:
 
-2. Click the **Publish** button in the editor toolbar (top area of the service binding editor).
+   ```text
+   Implement load_demo_data in ZCL_TRAVEL_SERVICE_###.
+   If either ZTRAVEL### or ZBOOKING### already contains data in the current client,
+   return 'Demo data already present; loading skipped' without changing anything.
+   Otherwise read up to five /DMO/TRAVEL rows ordered by travel_id that have at least
+   one /DMO/BOOKING row and an existing non-initial customer in /DMO/CUSTOMER.
+   Read only the bookings belonging to those selected travels.
+   If no matching source travels exist, return 'No demo source data found' and write nothing.
+   Map the source rows to our tables using the definitions inspected in Exercise 2.
+   Explicitly handle differing field names, statuses, and audit fields; do not assume
+   CORRESPONDING alone maps them all. Populate the current client as needed.
+   Insert travels before bookings. Do not commit or roll back in this method.
+   Let database exceptions reach the caller so it can roll back the whole load.
+   Return 'Demo data loaded' on success. Never delete or update /DMO/ data.
 
-   > ℹ️ The "Publish" action registers a local service endpoint that allows the Fiori elements preview and external consumers to discover the service.
+   Update ZCL_TRAVEL_APP_### main to call load_demo_data once, COMMIT WORK on
+   normal return, and catch cx_sy_open_sql_db to ROLLBACK WORK, print the error,
+   and return on failure. Then print the loader message, travel count, and each
+   travel followed by its bookings using read_travels, read_bookings and out->write.
+   If no travels exist, print 'No travel data available' and return.
+   Keep all SELECT/INSERT statements in the service. Show changes for review before activation.
+   Do not execute the class yet.
+   ```
 
-   ![Publish Service binding published](images/ex03_publish_service_binding.png)
+2. Review the mapping. The source Travel table can use `status` while the reference structure uses `overall_status`; have Copilot explain the mapping it found in your system. Check that booking selection cannot accidentally read the entire source table when no travels were selected.
 
-4. Wait for the publishing to complete. 
+3. Check that a second run will skip loading, that all writes use your suffix, and that the caller rolls back a failed load before returning.
 
-   > ✅ You should see on the bottom _Publish/unpublish action in progress_.
+4. Confirm activation of the service and executable class.
 
 </details>
 
 ---
 
-## Exercise 3.2: Preview the Travel App in the Browser
+## Exercise 3.2: Run and Inspect Console Output
 [^Top of page](#)
-
-> Open the SAP Fiori elements App Preview for the Travel entity.
 
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open your service binding **`ZUI_TRAVEL_O4###`** and click the **Preview** button.
+1. Open `ZCL_TRAVEL_APP_###` in the editor.
 
-   ![Service binding preview](images/ex03_service_binding.png)
+2. Open the Command Palette and select **ABAP: Run ABAP Application (Console)**. Select the class if prompted. Use the console execution command supplied by your ADT version; do not select ABAP Unit test execution.
 
-2. Select the `Travel` entity then click **Open** from the pop-up dialog.
-   
-   ![Select entity](images/ex03_select_entity.png)
+   See SAP's [console execution documentation](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/testing-and-quality-checking) for this command.
 
-   A browser window opens with the **SAP Fiori elements App Preview** for your Travel application.
+3. Inspect the **Output** panel containing the ABAP console output. The layout and IDs depend on your source data. The output should contain these sections:
 
-2. Try creating a new `Travel` entity:
-   - Click **Create** and fill some fields: **Destination**, **Begin Date**, **End Date**
-   - Fill in **Agency ID** and **Customer ID** (use any valid IDs from the DMO flight reference data, e.g., `070001` for Agency, `000001` for Customer)
-   - Click **Save**
+   ```text
+   Demo data loaded
+   Travel count: <1 to 5>
+   Travel: <travel_id>, Customer: <customer_id>, ...
+   Bookings for travel <travel_id>: <booking rows>
+   ...
+   ```
 
-   > ✅ If you can create and save a Travel entry, the app is working correctly!
+4. Confirm each booking's `travel_id` matches the travel printed above it. Note one travel ID and its valid customer ID for Exercise 4.
+
+5. Run the class again. Expect `Demo data already present; loading skipped`, with the same travel and booking counts. Loading must not duplicate records or reset later changes.
+
+6. If the output says `No demo source data found`, ask the instructor to provision Flight Reference Scenario data. If loading is skipped but no travels appear, inspect your participant tables for partial data from an earlier attempt; resolve that with the instructor before continuing. Do not clear shared source tables.
+
+> ✅ Success: console output shows Travel and Booking data, and a repeated run preserves it.
 
 </details>
 
 ---
 
-## Exercise 3.3: Create ABAP helper class
+## Exercise 3.3: Create the Customer-Validation Helper
 [^Top of page](#)
 
-> Create a helper class to populate the Travel and Booking database tables with demo data from the ABAP Flight Reference Scenario.
+> This helper checks whether a customer exists. Demo loading belongs to the service created above.
 
 <details>
   <summary>🔵 Click to expand!</summary>
 
-Loading demo data makes the app more interesting to work with in the remaining exercises.
+1. In the Command Palette, choose **ABAP: Create New ABAP Object**, then **Class**.
+2. Enter package `ZRAP130_AI_###`, name `ZCL_TRAVEL_HELPER_###`, and description `Travel customer validation ###`. Leave superclass and interface empty.
+3. Replace the class source with the following, substituting your group ID:
 
-1. Open the **Command Palette** (**`Ctrl+Shift+P`**) and type `ABAP: Create new ABAP Object`or use **`Ctrl+Shift+Alt+N`** (macOS: **`Cmd+Option+Shift+N`**)  to create a new ABAP Class.
-
-   - Package: **`ZRAP130_AI_###`**
-   - Name: **`ZCL_TRAVEL_HELPER_###`**
-   - Description: **`Travel helper class ###`**
-  
-   You can skip the entries for `Superclass` and `Interface`. The class **`ZCL_TRAVEL_HELPER_###`** should have been created successfully
-
-   ![create ABAP Class](images/ex03_create_abap_class.png)
-
-
-2. Paste the following code into the class, replacing **`###`** with your group ID:
-
-   ```ABAP
+   ```abap
    CLASS zcl_travel_helper_### DEFINITION
-     PUBLIC
-     FINAL
-     CREATE PUBLIC.
-
+     PUBLIC FINAL CREATE PUBLIC.
      PUBLIC SECTION.
-       METHODS: validate_customer
-                  IMPORTING iv_customer_id TYPE /dmo/customer_id
-                  RETURNING VALUE(rv_exists) TYPE abap_bool.
-
-     PROTECTED SECTION.
-     PRIVATE SECTION.
+       METHODS validate_customer
+         IMPORTING iv_customer_id TYPE /dmo/customer_id
+         RETURNING VALUE(rv_exists) TYPE abap_bool.
    ENDCLASS.
 
    CLASS zcl_travel_helper_### IMPLEMENTATION.
-
      METHOD validate_customer.
-       SELECT SINGLE
-         FROM /dmo/customer
-         FIELDS @abap_true AS line_exists
+       rv_exists = abap_false.
+       IF iv_customer_id IS INITIAL.
+         RETURN.
+       ENDIF.
+       SELECT SINGLE FROM /dmo/customer
+         FIELDS @abap_true
          WHERE customer_id = @iv_customer_id
          INTO @rv_exists.
      ENDMETHOD.
-
    ENDCLASS.
    ```
 
-3. Save (**`Ctrl+S`**) and activate (**`Ctrl+F3`**) the class.
+4. Review the early return for an initial customer ID and the read-only lookup. Save and activate the helper.
 
 </details>
 
@@ -132,12 +137,6 @@ Loading demo data makes the app more interesting to work with in the remaining e
 ## Summary & Next Exercise
 [^Top of page](#)
 
-Now that you've:
-- Published the local service endpoint of the service binding **`ZUI_TRAVEL_O4###`**
-- Opened and tested the SAP Fiori elements App Preview in the browser
-- Created a test travel entry to verify the app is working
-- Created a helper class for future use
+You loaded participant demo tables, ran the executable class, inspected Travel and Booking console output, and created a reusable customer-validation helper.
 
-You can continue with the next exercise — **[Exercise 4: Add a Validation](../ex04/README.md)**
-
----
+Continue with **[Exercise 4: Add a Validation](../ex04/README.md)**.

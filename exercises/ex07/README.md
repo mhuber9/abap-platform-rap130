@@ -1,109 +1,90 @@
-[Home - RAP130 - Build SAP Fiori Apps with ABAP Cloud and SAP Joule for Developers in Visual Studio Code](../../README.md)
+[Home - Build an ABAP Travel Application with GitHub Copilot and ADT in Visual Studio Code](../../README.md)
 
 # Exercise 7: Create a Custom Agent _(Optional)_
 
 ## Introduction
 
-In this exercise, you will create a **custom agent** to tailor your coding agent's behaviour for ABAP development in this workshop. A custom agent lets you define specific instructions, naming conventions, context, and tool preferences — so your agent behaves consistently without you having to repeat the same guidance in every prompt.
-
-For ABAP development with RAP130, a custom agent is useful for telling your coding agent to:
-- Always use the ADT MCP tools for ABAP operations
-- Follow RAP naming conventions and use the correct package/group ID
-- Keep ABAP code style consistent with ABAP Cloud restrictions
-
-> ℹ️ **Note**: The steps in this exercise differ depending on which coding agent you are using:
-> - **GitHub Copilot** — use the built-in Visual Studio Code command to create the custom agent
-> - **Other coding agents** (e.g. Cursor, Cline, etc.) — create an `agent.md` file manually
-
-The official documentation provides an [example of a custom agent for ABAP development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agent-configuration?locale=en-US) that helps you get started.
+A custom agent gives Copilot reusable context for the Travel application: object names, package, ABAP Cloud conventions, and the review workflow. You will create one and verify that it understands your application without repeating every detail.
 
 ### Exercises
 
-- [7.1 - Create a Custom Agent (GitHub Copilot)](#exercise-71-create-a-custom-agent-github-copilot-)
-- [7.2 - Create a Custom Agent (Other Coding Agents)](#exercise-72-create-a-custom-agent-other-coding-agents-)
+- [7.1 - Create a Custom Agent (GitHub Copilot)](#exercise-71-create-a-custom-agent-github-copilot)
+- [7.2 - Adapt the Instructions for Other Coding Agents](#exercise-72-adapt-the-instructions-for-other-coding-agents)
 - [Summary](#summary)
 
-> ℹ️ **Reminder**: Don't forget to replace all occurrences of the placeholder **`###`** with your group ID in the exercise steps below.
+> Replace `###` with your group ID before saving the agent instructions.
 
 ---
 
-## Exercise 7.1: Create a Custom Agent (GitHub Copilot) 💎
+## Exercise 7.1: Create a Custom Agent (GitHub Copilot)
 [^Top of page](#)
-
-> Use the agent selector in GitHub Copilot Chat to create a custom agent for ABAP development.
 
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. Open **GitHub Copilot Chat** (**`Ctrl+Shift+I`** / **`Cmd+Shift+I`**).
-
-2. In the chat input bar, click the **agent selector icon** (`</>`) to open the agent dropdown.
-
-3. Select **"Configure Custom Agents..."** at the bottom of the list. Then click on **"+ Create new custom agent..."**
-
-   ![Creating a custom agent in Visual Studio Code](images/ex7_create_custom_agent.gif)
-
-4. Visual Studio Code opens a new `agent.md` file for editing (stored in `.github/` in your workspace).
-
-5. Replace the default content with instructions tailored for this RAP130 workshop. For example:
+1. Open Copilot Chat and use **Configure Custom Agents**, or run **Chat: New Custom Agent** from the Command Palette.
+2. Choose a workspace location and name the agent `travel-workshop`. Store it as `.github/agents/travel-workshop.agent.md` in a local workspace folder. If your workspace contains only the ADT virtual destination, choose a user-level location in the creation dialog instead.
+3. Paste this definition, replacing `###`:
 
    ```markdown
-   # ABAP RAP130 Custom Agent
+   ---
+   name: Travel Workshop
+   description: Develop the ABAP Travel console application with ADT and Copilot.
+   ---
 
-   You are an ABAP developer building a transactional SAP Fiori elements app using the RAP framework and the ADT MCP Server in Visual Studio Code.
+   You are an ABAP developer building a Travel and Booking console application
+   in Visual Studio Code with GitHub Copilot and the ADT MCP Server.
 
-   ## Rules
-   - Always use the ADT MCP tools (`abap_generators-*`, `abap_creation-create_object`, `abap_activate-objects`, etc.) for all ABAP backend operations — never generate ABAP code manually when an MCP tool can do it.
-   - My group ID suffix is `###`. Use this suffix in all artifact names (e.g., `ZRAP130_AI_###`, `ZTRAVEL###`, `ZR_TRAVEL###`).
-   - Package for all objects: `ZRAP130_AI_###`.
+   ## Application context
+   - My participant suffix is ###. Package: ZRAP130_AI_###.
+   - Tables: ZTRAVEL### and ZBOOKING###, based on /DMO/TRAVEL_DATA and /DMO/BOOKING_DATA.
+   - ZCL_TRAVEL_APP_### implements IF_OO_ADT_CLASSRUN and prints with out->write.
+   - ZCL_TRAVEL_SERVICE_### owns load_demo_data, read_travels, read_bookings, and save_travel.
+   - ZCL_TRAVEL_HELPER_### provides validate_customer.
+
+   ## Working rules
+   - Inspect available ADT tools and existing source before making changes.
+   - Use supported MCP tools for object creation, activation, and unit-test execution;
+     edit source through the ADT virtual workspace. Explain any required manual step.
+   - Preserve exact object names and public method signatures from the exercises.
+   - Use ordinary ABAP Cloud classes and SQL. Keep the console entry point.
+   - Keep /DMO/ source data read-only. Demo loading skips if either participant table has data.
+   - Validate customers before saving; reject invalid input without a database write.
+   - Keep COMMIT WORK and ROLLBACK WORK in the executable caller, outside service methods.
+   - Use SQL test doubles for unit tests, with isolated fixtures and no commits.
+   - Present source changes for review before activation, then run approved tests.
+   - Report actual activation and test outcomes; do not claim unexecuted checks passed.
    ```
 
-   > ℹ️ Replace `###` with your group ID in the agent instructions above.
+4. Save the definition and select **Travel Workshop** in the agent dropdown. Confirm the ADT tools are enabled for this agent.
+5. Send this read-only verification prompt:
 
-6. **Save** the file (**`Ctrl+S`** / **`Cmd+S`**).
+   ```text
+   Summarize my package, object names, entry point, and transaction rules.
+   Inspect save_travel and explain how invalid customer IDs are rejected.
+   Do not change or activate anything.
+   ```
 
-7. Click the agent selector icon (`</>`) again — your new custom agent now appears in the list. Select it to activate it.
+6. Confirm that Copilot names your suffixed objects and explains the early return before SQL persistence. If it does not, check which agent is selected and whether your definition was loaded.
 
-   > ✅ Once selected, Copilot will apply the custom agent instructions automatically to every prompt.
+See the official [VS Code custom-agent documentation](https://code.visualstudio.com/docs/agent-customization/custom-agents) for supported file locations and creation commands.
 
 </details>
 
 ---
 
-## Exercise 7.2: Create a Custom Agent (Other Coding Agents) 💎
+## Exercise 7.2: Adapt the Instructions for Other Coding Agents
 [^Top of page](#)
 
-> Manually create an `agent.md` file to customise the behaviour of your coding agent (Cursor, Cline, or other MCP-compatible agents).
-
-> ℹ️ **About `agent.md`**: [`agent.md`](https://agents.md/) is an open standard for defining agent behaviour via a Markdown file. See [agents.md](https://agents.md/) for the full specification and examples.
+> Optional alternative for participants who already use another compatible coding agent.
 
 <details>
   <summary>🔵 Click to expand!</summary>
 
-1. In Visual Studio Code, create a new file at the root of your workspace named **`agent.md`**.
-
-   > ℹ️ **Hint**: Right-click the Explorer panel and select **New File**, then name it `agent.md`.
-
-2. Add instructions tailored for this RAP130 workshop. For example:
-
-   ```markdown
-   # ABAP RAP130 Custom Agent
-
-   You are an ABAP developer building a transactional SAP Fiori elements app using the ABAP RestFul Application  framework and the ADT MCP Server in Visual Studio Code.
-
-   ## Rules
-   - Always use the ADT MCP tools (`abap_generators-*`, `abap_creation-create_object`, `abap_activate-objects`, etc.) for all ABAP backend operations — never generate ABAP code manually when an MCP tool can do it.
-   - My group ID suffix is `###`. Use this suffix in all artifact names (e.g., `ZRAP130_AI_###`, `ZTRAVEL###`, `ZR_TRAVEL###`).
-   - Package for all objects: `ZRAP130_AI_###`.
-   ```
-
-   > ℹ️ Replace `###` with your group ID in the agent instructions above.
-
-3. **Save** the file (**`Ctrl+S`** / **`Cmd+S`**).
-
-4. Open your coding agent and verify it picks up the `agent.md` file. The exact mechanism depends on your agent — consult its documentation for how it loads custom instructions.
-
-   > ✅ Once loaded, your agent will apply these instructions automatically to every prompt.
+1. Confirm your agent supports the ADT MCP connection **and** reading/editing the ADT virtual workspace. MCP connectivity alone is insufficient for this workflow.
+2. Copy the application context and working rules from section 7.1 into the instruction mechanism documented by that agent. File names and formats differ; do not assume Copilot's `.agent.md` format is portable.
+3. Enable the relevant ADT tools, load the instructions, and run the same read-only verification prompt.
+4. Confirm that the agent reads actual ABAP source and uses your participant suffix before asking it to make changes.
 
 </details>
 
@@ -112,12 +93,6 @@ The official documentation provides an [example of a custom agent for ABAP devel
 ## Summary
 [^Top of page](#)
 
-In this exercise, you:
-- Created a custom agent definition to tailor your coding agent's behaviour for ABAP RAP development
-- Configured the agent with your group ID, package name, naming conventions, and a preference for ADT MCP tool use
+You configured reusable instructions for the Travel application and verified that your agent can apply the package, naming, transaction, and review conventions.
 
-A custom agent saves time across all exercises: you no longer need to repeat context about your group ID, package, or RAP conventions in every prompt.
-
-**[↑ Back to Tutorial Home](../../README.md)**
-
----
+**[Back to Tutorial Home](../../README.md)**

@@ -1,4 +1,4 @@
-[Home - RAP130 - Build SAP Fiori Apps with ABAP Cloud and SAP Joule for Developers in Visual Studio Code](../../README.md)
+[Home - Build an ABAP Travel Application with GitHub Copilot and ADT in Visual Studio Code](../../README.md)
 
 # Exercise 1: Enable the ADT MCP Server 💎
 
@@ -8,7 +8,7 @@ In the previous exercise, you installed Visual Studio Code and the ADT for Visua
 
 In this exercise, you will enable the **ADT MCP Server** that is built into the ADT for Visual Studio Code extension, and verify that the MCP tools are available.
 
-The ADT MCP Server exposes ABAP development capabilities as **Model Context Protocol (MCP) tools** — allowing you to create packages, create transports, generate complete RAP applications, activate objects, and more through natural language prompts. For more information, see [Agentic AI for ABAP Development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agentic-ai-development?locale=en-US)
+The ADT MCP Server exposes ABAP development capabilities as **Model Context Protocol (MCP) tools** — allowing you to create ABAP objects, work with transports, activate objects, and run unit tests through natural language prompts. For more information, see [Agentic AI for ABAP Development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agentic-ai-development?locale=en-US)
 
 ### Exercises
 
@@ -27,19 +27,17 @@ The **ADT MCP Server** is a local HTTP server that runs inside the ADT for Visua
 
 When enabled, the MCP server exposes a set of ABAP development tools to any MCP-compatible AI client. In this workshop, the exercises use **GitHub Copilot** as the client. Any coding agent that supports Visual Studio Code's virtual workspace filesystem is compatible — GitHub Copilot is confirmed; others are also supported.
 
-**Key tools available via the ADT MCP Server:**
+**Tools used in this workshop (confirm availability in your installed version):**
 
 | Tool | Description |
 |------|-------------|
-| `abap_activate-objects` | Activates ABAP objects in the backend system |
-| `abap_business_services-fetch_service_information` | Fetches OData service metadata |
 | `abap_creation-create_object` | Creates ABAP development objects |
-| `abap_generators-list_generators` | Lists available ABAP RAP generators |
-| `abap_generators-get_schema` | Retrieves the JSON schema for a generator |
-| `abap_generators-generate_objects` | **Runs a RAP generator** — the key tool for Exercise 2 |
-| `abap_run_unit_tests` | Runs ABAP unit tests for a given set of objects |
-| `abap_transport-create` | Creates a transport request |
+| `abap_activate-objects` | Activates ABAP objects in the backend system |
+| `abap_run_unit_tests` | Runs ABAP unit tests |
+| `abap_transport-create` | Creates a transport request when required |
 | `abap_transport-get` | Gets relevant transport requests for an object |
+
+Copilot edits ABAP source through the ADT virtual workspace and uses the available MCP tools for backend operations. Object creation and source editing are separate steps; there is no application generator in this exercise.
 
 See [ADT MCP Tools](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/mcp-tools?locale=en-US) for the complete list of tools available.
 
@@ -157,7 +155,7 @@ If the ADT MCP Server does not appear or fails to start:
 3. Click the **"Configure Tools"** (tools wrench icon) button in the Copilot chat input bar.
 
 4. A quick pick list appears showing available tool providers. You should see:
-   - **ADT MCP Server** with a list of tools below it (e.g., `abap_generators-list_generators`, `abap_creation-create_object`, etc.)
+   - **ADT MCP Server** with a list of tools below it (e.g., `abap_creation-create_object`, `abap_activate-objects`, etc.)
 
 
    > ✅ If you see the ADT MCP Server and its tools listed, your setup is complete!
@@ -166,18 +164,19 @@ If the ADT MCP Server does not appear or fails to start:
 
 5. Make sure the ADT MCP Server tools are **checked/enabled** in the list.
 
-6. **Sanity test** — type the following prompt in your coding agent's chat and press **Enter**:
+6. **Tool discovery** — enter this prompt in Copilot Chat:
+   ```text
+   Inspect the ADT MCP tools available in this session. Identify the tools for
+   creating ABAP classes and database tables, activating objects, and running
+   ABAP Unit tests. Explain how you will read and edit source through the ADT
+   virtual workspace. Do not create, change, or activate any objects yet.
    ```
-   List all available ABAP RAP generators using the MCP tool.
-   ```
 
-   Your coding agent will request to call the `abap_generators-list_generators` tool. **Allow** the tool call when prompted.
+7. Compare the answer with the enabled tool list. A description alone does not prove a backend connection. Ask Copilot to read the existing `/DMO/TRAVEL_DATA` and `/DMO/BOOKING_DATA` structures through the connected ADT workspace and summarize their keys and fields without editing them.
 
-   You should see a list of available generators returned, including an entry for **"OData UI Service from Scratch"**.
+8. Review any requested read operation and its system destination. Confirm that actual object contents are returned. If access fails, reconnect the destination and check that the Flight Reference Scenario is installed before continuing.
 
-   > ✅ If you see generator names returned, the ADT MCP Server is working correctly with your coding agent!
-   
-   ![Available ABAP RAP Generators](images/ex1_available_generators.png)
+   > ✅ Success: Copilot can access existing ABAP source, and the creation, activation, and test tools are available. If your version lacks creation support for a required object type, use **ABAP: Create New ABAP Object** for that object in Exercise 2, then let Copilot edit its source.
 
 </details>
 
@@ -191,6 +190,6 @@ Now that you've:
 - Verified the server is running (via notification or `MCP: List Servers`)
 - Confirmed that the ADT MCP tools are visible and callable from your coding agent in agent mode
 
-you can continue with the next exercise — **[Exercise 2: Generate the SAP Fiori App via MCP Tools](../ex02/README.md)**
+you can continue with the next exercise — **[Exercise 2: Generate the ABAP Travel Application](../ex02/README.md)**
 
 ---

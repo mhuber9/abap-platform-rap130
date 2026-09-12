@@ -1,10 +1,10 @@
-[Home - RAP130 - Build SAP Fiori Apps with ABAP Cloud and SAP Joule for Developers in Visual Studio Code](../../README.md)
+[Home - Build an ABAP Travel Application with GitHub Copilot and ADT in Visual Studio Code](../../README.md)
 
 # Getting Started
 
 ## Introduction
 
-Welcome to **RAP130**! Before building your SAP Fiori app, you need to set up your development environment in **Visual Studio Code** and connect it to your ABAP system.
+Welcome to **RAP130**! Before building your ABAP Travel console application, you need to set up your development environment in **Visual Studio Code** and connect it to your ABAP system.
 
 In this exercise, you will install Visual Studio Code, install the ADT for Visual Studio Code extension, and establish a connection to your ABAP system.
 
@@ -43,7 +43,7 @@ The group ID can contain **a maximum of 3 characters (numbers and/or letters)** 
 
 3. Search for **`zrap130_*###`**, replacing `###` with your chosen suffix. If results appear, the group ID is already taken — try another one.
 
-4. _No results_ means the group ID is available. Note it down and use it consistently throughout all exercises.
+4. Also search for `ZTRAVEL###`, `ZBOOKING###`, and `ZCL_TRAVEL*###`. Only use the suffix if none of these workshop objects exists. Note it down and use it consistently throughout all exercises.
 
 > ⚠️ We **do not recommend** using group ID **`000`**. Choose your initials or a number combination that is unique to you.
 
@@ -119,6 +119,8 @@ The group ID can contain **a maximum of 3 characters (numbers and/or letters)** 
 </details>
 
 ---
+
+Before continuing, install **GitHub Copilot** from the VS Code Extensions view, sign in with your GitHub account, and verify that Copilot Chat and Agent mode are available with your account.
 
 ## Exercise 0.4: Connect Visual Studio Code to Your ABAP System
 [^Top of page](#)
@@ -234,9 +236,10 @@ The group ID can contain **a maximum of 3 characters (numbers and/or letters)** 
 |------|----------|---------|
 | **Activity Bar** | Far left | Switch between Explorer, Search, Source Control, Run & Debug, Extensions |
 | **Explorer (Workspace)** | Left sidebar | Navigate your ABAP system hierarchy — packages, object types, objects |
-| **Editor** | Center | Edit ABAP source code (classes, CDS views, behavior definitions, etc.) |
+| **Editor** | Center | Edit ABAP source code (classes and database table definitions) |
 | **Coding agent chat** (e.g. GitHub Copilot) | Right sidebar or panel | AI-powered chat — you will run MCP tool prompts here |
 | **Problems Panel** | Bottom | Syntax errors and warnings |
+| **ABAP Console** | Bottom | Travel application output |
 | **Terminal** | Bottom | Integrated shell |
 | **Status Bar** | Very bottom | Current line/column, language, connected system |
 

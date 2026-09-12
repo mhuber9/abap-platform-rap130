@@ -1,73 +1,98 @@
-# Prompt Guidelines for RAP130 💎
+# Prompt Guidelines for the ABAP Travel Workshop
 
-This file provides guidelines and example prompts for using a **coding agent with ADT MCP tools** (examples shown with GitHub Copilot) effectively during the RAP130 workshop.
-
----
+Use these prompts with **GitHub Copilot and ADT MCP tools**. Replace `###` with your participant suffix before sending. The linked exercises contain the complete specifications; use those for initial creation instead of asking Copilot to invent the application contract.
 
 ## General principles
 
-- Always specify the **object names** and **suffix `###`** explicitly in your prompt
-- Specify the **target package** when creating or generating objects
-- Allow MCP tool calls when Copilot requests them — review the parameters before approving
-- If a generation produces unexpected results, refine the prompt and try again
-
----
+- Specify exact object names, package `ZRAP130_AI_###`, and the connected destination.
+- Inspect existing source and available tools before making changes.
+- Use ADT object-creation tools where supported, and edit source through the ADT virtual workspace.
+- Review the source before activation and tests. Review proposed fixes rather than weakening failing assertions.
+- Keep sample loading repeatable and `/DMO/` data read-only. The executable class owns transaction boundaries.
+- Distinguish observed tool results from suggested code or unexecuted checks.
 
 ## Example prompts by exercise
 
+### Exercise 1 — Discover tools and read source
 
-### Exercise 2 — List generators
-
-```
-List all available ABAP RAP generators using the MCP tool.
-```
-
-### Exercise 2 — Run the RAP generator
-
-```
-Generate a transactional SAP Fiori app for travel management with DRAFT using the ABAP RAP generator.
-
-Use the following specification:
-- Package: ZRAP130_AI_###
-- Entity 1: Travel, based on the structure /DMO/TRAVEL_DATA
-- Entity 2: Booking, based on /DMO/BOOKING_DATA (child of Travel)
-- All generated object names should end with the suffix "###"
+```text
+Identify the available ADT tools for creating classes and database tables,
+activating objects, and running unit tests. Read /DMO/TRAVEL_DATA and
+/DMO/BOOKING_DATA through the connected ADT workspace and summarize their keys.
+Do not change or activate anything.
 ```
 
-### Exercise 2 — Activate all objects
+### Exercise 2 — Create the application
 
-```
-Activate all objects in package ZRAP130_AI_### using the MCP tool.
-```
+Use the full [Exercise 2 creation prompt](../exercises/ex02/README.md#exercise-22-generate-the-travel-tables-and-classes). It defines `ZTRAVEL###`, `ZBOOKING###`, `ZCL_TRAVEL_SERVICE_###`, and `ZCL_TRAVEL_APP_###`, including method signatures. The helper is introduced in Exercise 3.
 
+After reviewing the source:
 
-### Exercise 4 — Implement validation
-
-```
-Add the validation validateCustomer. In its implementation, the method validate_customer from the ABAP ZCL_TRAVEL_HELPER_### should be used. Ask to review changes before proceeding with the activation
+```text
+Activate ZTRAVEL### and ZBOOKING###, then ZCL_TRAVEL_SERVICE_###, then
+ZCL_TRAVEL_APP_### using the available ADT tools. Report actual activation results.
 ```
 
-### Exercise 5 — Generate unit tests
+### Exercise 3 — Load and display sample data
 
-```
-Generate ABAP unit tests for the local test class LTCL_TRAVEL_HELPER_### in the class ZCL_TRAVEL_HELPER_###.
-Create test methods for validate_customer (valid and invalid cases) and get_booking_status (Booked/New/Cancelled).
-```
+Use the full [demo-loading prompt](../exercises/ex03/README.md#exercise-31-load-travel-and-booking-demo-data), including source selection and transaction handling. For a read-only review:
 
-### Exercise 5 — Run unit tests via MCP
-
-```
-Run ABAP unit tests for class ZCL_TRAVEL_HELPER_### using the MCP tool.
+```text
+Review load_demo_data in ZCL_TRAVEL_SERVICE_### and the caller in ZCL_TRAVEL_APP_###.
+Explain why a repeated run skips existing data, how Booking rows are restricted to
+selected travels, and how a failed load is rolled back. Do not change anything.
 ```
 
----
+### Exercise 4 — Add customer validation
 
-## Tips for better MCP results
+```text
+In ZCL_TRAVEL_SERVICE_###->save_travel, use
+ZCL_TRAVEL_HELPER_###->validate_customer before any database write.
+Reject initial or nonexistent customers with ty_result-success = abap_false
+and a meaningful message. Preserve the signature and caller-owned transactions.
+Show changes for review before activation.
+```
+
+Use the full [console validation prompt](../exercises/ex04/README.md#exercise-42-run-and-test-the-enhanced-travel-application) to demonstrate valid and invalid saves and compare the stored row before rollback.
+
+### Exercise 5 — Generate and run tests
+
+```text
+Generate isolated ABAP Unit tests for ZCL_TRAVEL_HELPER_###->validate_customer
+using SQL doubles for /DMO/CUSTOMER. Cover existing, missing, and initial IDs.
+Show tests for review before activation and execution.
+```
+
+Use the [service test cases](../exercises/ex05/README.md#exercise-52-verify-rejection-before-persistence) to prove invalid saves do not insert or change participant rows. After reviewing both classes:
+
+```text
+Run ABAP Unit tests for ZCL_TRAVEL_HELPER_### and ZCL_TRAVEL_SERVICE_### using
+available ADT tools. Report the actual results. Explain any failures and propose
+corrections for review without removing the failed requirements.
+```
+
+### Exercise 6 — Prepare debugging
+
+```text
+Read the console application and identify breakpoint locations in save_travel
+and validate_customer for tracing the valid and invalid customer attempts.
+Explain the expected call stack. Do not change the code.
+```
+
+### Exercise 7 — Verify custom-agent context
+
+```text
+Summarize my package, object names, entry point, and transaction rules.
+Inspect save_travel and explain how invalid customer IDs are rejected.
+Do not change or activate anything.
+```
+
+## Tips for better results
 
 | Tip | Why it helps |
 |-----|-------------|
-| Be explicit about object names | Avoids ambiguity when multiple objects match |
-| Specify the suffix `###` | Ensures generated artifacts don't collide with other participants |
-| Say "use the MCP tool" | Signals to your coding agent to prefer tool calls over code suggestions |
-| Allow all tool calls in sequence | Some operations (e.g., generate) require multiple tool calls |
-| Refresh the Visual Studio Code Explorer after generation | Press **F5** to see newly created objects |
+| Include the actual activation or test error | Grounds the correction in observed behavior |
+| Preserve the method contract from Exercise 2 | Keeps prompts and later exercises compatible |
+| Confirm absent demo customers in the backend | Avoids assuming a hard-coded ID is invalid |
+| Use test doubles for unit-test customer IDs | Keeps tests independent of shared data |
+| Check stored rows before rollback or cleanup | Detects invalid writes that cleanup could conceal |

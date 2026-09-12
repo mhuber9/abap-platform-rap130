@@ -1,16 +1,15 @@
-[Home - Workshops about the ABAP RESTful Application Programming Model (RAP)](https://github.com/SAP-samples/abap-platform-rap-workshops/blob/main/README.md)
-
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-platform-rap130)](https://api.reuse.software/info/github.com/SAP-samples/abap-platform-rap130)
-
-# RAP130 - Build SAP Fiori Apps with ABAP Cloud and SAP Joule for Developers in Visual Studio Code
+# Build an ABAP Travel Application with GitHub Copilot and ADT in Visual Studio Code
 
 ## Description
 
-This repository contains the material for the hands-on session **RAP130 - Build SAP Fiori Apps with ABAP Cloud and SAP Joule for Developers in Visual Studio Code** 💎
+This repository contains a hands-on workshop for ABAP developers learning **GitHub Copilot with ADT in Visual Studio Code**.
 
-You will build a transactional SAP Fiori elements app for travel management using the **ABAP RESTful Application Programming Model (RAP)** — entirely from **Visual Studio Code**, powered by the **ADT MCP Server** to generate and enhance your application.
+You will build a Travel and Booking application using **ordinary ABAP Cloud classes and database tables**. An executable class displays data and save results in the **ABAP Console**. Copilot and the **ADT MCP Server** help you create objects, enhance code, and generate unit tests.
 
-**Table of Content**
+The repository and package identifiers retain `RAP130` for continuity. The exercises use no RAP runtime or Fiori UI.
+
+**Table of Contents**
+
 - [Requirements](#requirements)
 - [Overview](#overview)
 - [Exercises](#exercises)
@@ -20,83 +19,76 @@ You will build a transactional SAP Fiori elements app for travel management usin
 
 ## Requirements
 
-> To complete the practical exercises, you need:
-> - **Visual Studio Code** — Download from [https://code.visualstudio.com/](https://code.visualstudio.com/)
-> - **ADT for Visual Studio Code** — ADT for Visual Studio Code includes the built-in ADT MCP Server. Here is the [link](https://marketplace.visualstudio.com/items?itemName=SAPSE.adt-vscode) to download the extension. 
-> - **IMPORTANT!** ℹ️ 
-  A **coding agent** extension in Visual Studio Code that supports Visual Studio Code's virtual workspace filesystem — required to call MCP tools and read/edit ABAP files. 
-  **GitHub Copilot** is the primary tested agent and the one used and recommended for this tutorial.
-> - Access to an **SAP BTP ABAP Environment** or **SAP S/4HANA Cloud Public Edition** or **SAP S/4HANA Cloud Private Edition** system that has the [ABAP Flight Reference Scenario](https://github.com/SAP-samples/abap-platform-refscen-flight) imported and SAP Joule for developers, ABAP AI capabilities enabled.
->
-> (*) SAP BTP ABAP environment, SAP S/4HANA Cloud Public Edition, SAP S/4HANA Cloud Private 2025 Edition are currently supported.
->
->> #### ⚠ Exception regarding SAP-led events, such as "ABAP Developer Day" and "SAP CodeJam"
->> → A dedicated ABAP system for the hands-on workshop participants will be provided.
->> → Access to the system details for the workshop will be provided by the SAP instructors during the session.
+- Familiarity with ABAP classes, basic SQL, and ABAP development; the focus is the Copilot workflow.
+- [Visual Studio Code](https://code.visualstudio.com/) and [SAP ADT for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=SAPSE.adt-vscode), including the ADT MCP Server.
+- GitHub Copilot with access to Chat and Agent mode, signed in and able to work with the ADT virtual workspace.
+- An **SAP BTP ABAP Environment**, **SAP S/4HANA Cloud Public Edition**, or suitable **SAP S/4HANA Cloud Private Edition** development system supporting the installed ADT extension and its MCP capabilities. Confirm backend/version requirements with your instructor and the linked SAP documentation.
+- The [ABAP Flight Reference Scenario](https://github.com/SAP-samples/abap-platform-refscen-flight) installed with `/DMO/TRAVEL_DATA`, `/DMO/BOOKING_DATA`, and populated `/DMO/TRAVEL`, `/DMO/BOOKING`, and `/DMO/CUSTOMER` source tables accessible to workshop code.
+- Authorization to create and activate participant objects, run console classes and ABAP Unit tests, and optionally debug. The ABAP SQL test double framework must be available.
+- Package `ZRAP130_AI_###`, supplied by the instructor or created using the Eclipse ADT fallback in Exercise 2. Application development then takes place in VS Code.
 
+Joule predictive code completion is an optional activity in Exercise 4 and requires its own enabled capabilities. Ask the instructor to confirm any backend entitlements required for ADT agentic tools; using Copilot does not replace those system prerequisites.
+
+> For SAP-led events, the instructors provide system access details and participant group IDs.
 
 ## Overview
-
-> In this hands-on session, you will learn how to use the **ADT MCP Server** to build a transactional SAP Fiori elements app entirely from Visual Studio Code — using AI-powered generation, code enhancement, and unit test support — powered by ABAP Cloud and the ABAP RESTful Application Programming Model (RAP).
 
 <details>
   <summary>🔵 Click to expand!</summary>
 
-  This hands-on workshop covers the full developer journey from Visual Studio Code environment setup to a fully functional, AI-enhanced transactional app:
+The workshop preserves the journey from environment setup to a working application with validation and tests:
 
-  - Set up Visual Studio Code with the ADT for Visual Studio Code extension and connect to your ABAP Cloud system
-  - Configure the built-in **ADT MCP Server** and connect it to **your coding agent**
-  - Use ADT MCP tools to **generate a complete RAP business object** (Travel + Booking) and its OData UI service — all via natural language prompts
-  - Explore and adjust the generated artifacts (CDS views, behavior definitions, metadata extensions) directly in Visual Studio Code
-  - Publish the service binding and preview the **SAP Fiori elements app** in the browser
-  - Add backend validations
-  - Run ABAP unit tests from Visual Studio Code
-  - Debug the SAP Fiori App from Visual Studio Code
+- Connect VS Code to your ABAP system and enable the ADT MCP Server.
+- Use Copilot to inspect reference definitions and create Travel and Booking tables and classes.
+- Review generated source and activate dependent objects.
+- Load a small sample into participant tables and display travels with their bookings.
+- Integrate customer validation before saving and inspect accepted and rejected outcomes.
+- Generate isolated unit tests and inspect failures and corrections.
+- Optionally debug the executable application and create a custom agent.
 
+The executable class `ZCL_TRAVEL_APP_###` calls `ZCL_TRAVEL_SERVICE_###`; the service reads and saves participant data and uses `ZCL_TRAVEL_HELPER_###` for customer validation. The executable caller owns commit/rollback boundaries. Sample loading preserves existing participant data, and `/DMO/` data remains read-only.
 
 </details>
 
 ## Exercises
 
-Follow these steps to build a SAP Fiori App using the ADT MCP Server and a coding agent (GitHub Copilot or compatible) in Visual Studio Code.
+Complete the mandatory exercises in order. Replace `###` with your participant suffix throughout. [Prompt guidelines](resources/prompt-guidelines.md) provide reusable prompts and links to the complete specifications.
 
-| Exercises | -- |
-| ------------- | -- |
-| [Getting Started](exercises/ex0/README.md)| -- | 
-| [Exercise 1: Enable the ADT MCP Server](exercises/ex01/README.md) | -- | 
-| [Exercise 2: Generate the SAP Fiori App via MCP Tools](exercises/ex02/README.md)| -- |
-| [Exercise 3: Publish and Preview the Travel App](exercises/ex03/README.md)| -- |
-| [Exercise 4: Add a Validation](exercises/ex04/README.md)| -- |
-| [Exercise 5: Generate ABAP Unit Tests](exercises/ex05/README.md) | -- | 
+| Exercise | Learning focus |
+|----------|----------------|
+| [Getting Started](exercises/ex0/README.md) | Environment and system connection |
+| [Exercise 1: Enable the ADT MCP Server](exercises/ex01/README.md) | Tool discovery and source access |
+| [Exercise 2: Generate the ABAP Travel Application](exercises/ex02/README.md) | Tables, classes, review, and activation |
+| [Exercise 3: Run the Travel Application](exercises/ex03/README.md) | Sample data, console execution, and helper creation |
+| [Exercise 4: Add a Validation](exercises/ex04/README.md) | Validation before persistence |
+| [Exercise 5: Generate ABAP Unit Tests](exercises/ex05/README.md) | Isolated tests and correction workflow |
 
-#### Optional Exercises
+### Optional Exercises
 
-| Exercises | -- |
-| ------------- | -- | 
-| [Exercise 6: Debug ABAP Code in Visual Studio Code](exercises/ex06/README.md) | -- | 
-| [Exercise 7: Create a Custom Agent](exercises/ex07/README.md) | -- | 
-
+| Exercise | Learning focus |
+|----------|----------------|
+| [Exercise 6: Debug ABAP Code in Visual Studio Code](exercises/ex06/README.md) | Breakpoints, stepping, watches, and call stack |
+| [Exercise 7: Create a Custom Agent](exercises/ex07/README.md) | Reusable application context and instructions |
 
 ## Known Issues
-<!-- You may simply state "No known issues. -->
+
+- ADT command labels and MCP tool availability can vary by installed version. Discover actual tools in Exercise 1; use the documented manual object-creation fallback when required.
+- Empty Flight Reference Scenario source data prevents demo loading. Ask the instructor to provision it before proceeding.
+- The rewritten workflow has been checked for documentation consistency locally. Backend activation, console execution, ABAP Unit tests, and debugger attachment still require verification on a connected workshop system.
 
 ## How to obtain support
-[Create an issue](https://github.com/SAP-samples/abap-platform-rap130/issues) in this repository if you find a bug or have questions about the content.
- 
-For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
+
+[Create an issue](https://github.com/mhuber9/abap-platform-rap130/issues) for problems with this adapted workshop. Include the exercise, ADT/backend versions, and actual error message.
+
+For general ABAP questions, use [SAP Community](https://community.sap.com/).
 
 ## Further Information
 
-You can find more information about ABAP AI, ABAP Cloud, RAP, and ADT for Visual Studio Code here:
-
-- [AI in ABAP Cloud](https://help.sap.com/docs/abap-ai/generative-ai-in-abap-cloud/generative-ai-in-abap-cloud?locale=en-US)
 - [Agentic AI for ABAP Development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agentic-ai-development?locale=en-US)
-- [ABAP Cloud Roadmap Information - GenAI](https://help.sap.com/docs/abap-cross-product/roadmap-info/genai?locale=en-US)
-- [ABAP Development Tools for Visual Studio Code - Official Documentation](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/abap-development-tools-for-visual-studio-code?locale=en-US)
-- [ABAP Development Tools for Visual Studio Code: Everything You Need to Know](https://community.sap.com/t5/technology-blog-posts-by-sap/abap-development-tools-for-vs-code-everything-you-need-to-know/ba-p/14258129)
-- [Behind the Design: How We Transformed the ABAP Development Tools Architecture to Support More IDEs](https://community.sap.com/t5/technology-blog-posts-by-sap/behind-the-design-how-we-transformed-the-abap-development-tools/ba-p/14258121)
-- [Getting Started with ABAP RESTful Application Programming Model (RAP)](https://pages.community.sap.com/topics/abap/rap)
-
+- [ADT MCP Tools](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/mcp-tools?locale=en-US)
+- [ABAP Basic Features for Visual Studio Code](https://developers.sap.com/tutorials/abap-environment-adt-coretools-vscode)
+- [ADT for Visual Studio Code documentation](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/abap-development-tools-for-visual-studio-code?locale=en-US)
+- [VS Code custom agents](https://code.visualstudio.com/docs/agent-customization/custom-agents)
 
 ## Contributing
 If you wish to contribute code, offer fixes or improvements, please send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).

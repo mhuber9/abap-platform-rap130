@@ -1,4 +1,4 @@
-[Home - RAP130 - Build SAP Fiori Apps with ABAP Cloud and SAP Joule for Developers in Visual Studio Code](../../README.md)
+[Home - Build an ABAP Travel Application with GitHub Copilot and ADT in Visual Studio Code](../../README.md)
 
 # Exercise 5: Generate ABAP Unit Tests 💎
 
@@ -6,11 +6,12 @@
 
 In the previous exercise, you added a backend validation to check customer IDs (_see [Exercise 4](../ex04/README.md)_).
 
-In this exercise, you will generate ABAP unit tests for the helper class **`ZCL_TRAVEL_HELPER_###`**, fix any issues, and run the tests — all in a single step.
+In this exercise, you will generate isolated ABAP unit tests for the helper and service, review them, and use Copilot to diagnose and correct failures.
 
 ### Exercises
 
 - [5.1 - Generate and Run Unit Tests](#exercise-51-generate-and-run-unit-tests-)
+- [5.2 - Verify Rejection Before Persistence](#exercise-52-verify-rejection-before-persistence)
 - [Summary](#summary)
 
 > ℹ️ **Reminder**: Don't forget to replace all occurrences of the placeholder **`###`** with your group ID in the exercise steps below.
@@ -35,24 +36,27 @@ In this exercise, you will generate ABAP unit tests for the helper class **`ZCL_
 2. Enter the following prompt:
 
    ```
-   Generate unit tests for the method validate_customer in the class ZCL_TRAVEL_HELPER_###. Fix any issues and run the unit tests until all of them are passed.
+   Generate ABAP Unit tests for validate_customer in ZCL_TRAVEL_HELPER_###.
+   Use the ABAP SQL test double framework for /DMO/CUSTOMER; do not depend on real data.
+   Cover an existing customer, a missing customer, and an initial customer ID.
+   Clear doubles between tests and destroy the environment in class_teardown.
+   Show the tests for review before activation and execution. After my review,
+   run them, diagnose failures, and propose corrections without weakening assertions.
    ```
 
    > ℹ️ Replace `###` with your group ID in the prompt before sending it.
 
-3. Your coding agent will create the test class, generate test methods, fix any issues, and run the tests iteratively until all pass. During this process it will call the MCP tools **`abap_activate-objects`** and **`abap_run_unit_tests`** — allow these tool calls when prompted.
+3. Review the generated tests and confirm activation and execution. Copilot can use **`abap_activate-objects`** and **`abap_run_unit_tests`** when available in your installed tool list. For failures, review its diagnosis and corrections, then rerun the tests.
 
 4. Review the test results in the **Test Results** panel.
 
-   ![Copilot generating and running unit tests](images/ex05_generate_unit_tests.gif)
 
-5. Optionally, double-check by running the unit tests manually: open the **Command Palette** (**`Ctrl+Shift+P`** / **`Cmd+Shift+P`**) and select **"ABAP: Run Unit Tests"**.
+5. Optionally, double-check by running the unit tests manually: open the **Command Palette** (**`Ctrl+Shift+P`** / **`Cmd+Shift+P`**) and select **"ABAP: Run ABAP Unit Tests"**.
 
-   ![Running unit tests via Command Palette](images/ex05_run_unit_tests.gif)
 
 6. Your code should look something like this:
    
-   > ℹ️ Do not forget to replace **`###`** with your assigned *Group ID* or choosen suffix.
+   > ℹ️ Do not forget to replace **`###`** with your assigned *Group ID* or chosen suffix.
 
    <details>
 
@@ -72,7 +76,8 @@ In this exercise, you will generate ABAP unit tests for the helper class **`ZCL_
             METHODS:
                setup,
                customer_exists     FOR TESTING,
-               customer_not_exists FOR TESTING.
+               customer_not_exists FOR TESTING,
+               initial_customer    FOR TESTING.
 
       ENDCLASS.
 
@@ -121,6 +126,13 @@ In this exercise, you will generate ABAP unit tests for the helper class **`ZCL_
                msg = 'Customer 999999 should not be found' ).
          ENDMETHOD.
 
+         METHOD initial_customer.
+            cl_abap_unit_assert=>assert_equals(
+               act = mo_cut->validate_customer( iv_customer_id = '' )
+               exp = abap_false
+               msg = 'An initial customer ID must be rejected' ).
+         ENDMETHOD.
+
       ENDCLASS.
       ```
    </details>
@@ -128,33 +140,73 @@ In this exercise, you will generate ABAP unit tests for the helper class **`ZCL_
 
 ---
 
+## Exercise 5.2: Verify Rejection Before Persistence
+[^Top of page](#)
+
+> Test the service as well as the helper: a false helper result must prevent a database change.
+
+<details>
+  <summary>🔵 Click to expand!</summary>
+
+1. Open `ZCL_TRAVEL_SERVICE_###` and ask Copilot:
+
+   ```text
+   Generate local ABAP Unit tests for save_travel in ZCL_TRAVEL_SERVICE_###.
+   Use CL_OSQL_TEST_ENVIRONMENT for ZTRAVEL### and /DMO/CUSTOMER.
+   Seed and clear only doubles; destroy the environment in class_teardown.
+   Do not call load_demo_data, use real database data, or issue COMMIT/ROLLBACK.
+   Cover these cases:
+   - Existing customer: success is true and the inserted row matches the input.
+   - Existing travel, missing customer: success is false; select the row immediately
+     after save_travel and assert that the full row equals its seeded baseline.
+   - New travel, missing customer: success is false and no travel row was inserted.
+   - Initial customer ID: success is false and no row was inserted.
+   - Initial travel ID with valid customer: success is false and no row was inserted.
+   Assert meaningful validation messages as well as booleans.
+   Show the tests for review before activation and execution.
+   ```
+
+2. Check that the service tests query the doubled table **before any cleanup**. An example assertion sequence for an existing travel is:
+
+   ```abap
+   " Arrange: ls_before is a travel row already inserted into the SQL double.
+   " The /DMO/CUSTOMER double contains only its valid customer.
+   DATA(ls_invalid) = ls_before.
+   ls_invalid-customer_id = '999999'. " Absent from this test's customer double
+   DATA(ls_result) = mo_cut->save_travel( ls_invalid ).
+   cl_abap_unit_assert=>assert_false( act = ls_result-success ).
+
+   SELECT SINGLE FROM ztravel### FIELDS *
+     WHERE travel_id = @ls_before-travel_id
+     INTO @DATA(ls_after).
+   cl_abap_unit_assert=>assert_equals( act = sy-subrc exp = 0 ).
+   cl_abap_unit_assert=>assert_equals( act = ls_after exp = ls_before ).
+   ```
+
+   This is an excerpt inside a generated test method. Have Copilot supply the fixture declarations, setup, and teardown; both rows must include the same current-client value.
+
+3. After review, activate and run tests for both `ZCL_TRAVEL_HELPER_###` and `ZCL_TRAVEL_SERVICE_###`. Expect at least three helper tests and five service tests, all passing. Test execution must leave participant and `/DMO/` data unchanged.
+4. If a test fails, ask Copilot to explain whether the failure is in the implementation or the fixture. Review the proposed correction and rerun both classes.
+
+</details>
+
+---
+
 ## Summary
 [^Top of page](#)
 
-Congratulations! You have completed all exercises of this workshop.
-
-In this final exercise, you:
-- Used your coding agent in Agent mode to generate unit tests for `ZCL_TRAVEL_HELPER_###` in one step
-- Let your coding agent fix any issues and run the tests iteratively until all passed
-
-You can continue with the other optional exercises:
-- **[Exercise 6: Debug ABAP Code in Visual Studio Code](../ex06/README.md)**
-- **[Exercise 7: Create a Custom Agent](../ex07/README.md)**
-
----
+You have completed the mandatory exercises. You generated and reviewed helper and service tests, checked validation before persistence, and used test results to guide corrections.
 
 ### What you built in this workshop
 
-Over the course of RAP130, you have:
+Over the course of this workshop, you have:
 
-1. ✅ Set up Visual Studio Code with the ADT extension and connected to an ABAP system
-2. ✅ Enabled and configured the ADT MCP Server with your coding agent
-3. ✅ Generated a complete transactional RAP Fiori app via AI-driven MCP tool calls
-4. ✅ Explored and adjusted the generated artifacts in Visual Studio Code
-5. ✅ Published the service and previewed the SAP Fiori elements app in the browser
-6. ✅ Added a validation
-7. ✅ Generated and ran ABAP unit tests 
+1. Connected VS Code to an ABAP system and enabled the ADT MCP Server.
+2. Used GitHub Copilot to create Travel and Booking tables and ordinary ABAP classes.
+3. Loaded sample data and displayed it through an executable console class.
+4. Added customer validation before persistence and checked the rejected path.
+5. Generated and run isolated ABAP Unit tests for the helper and service.
 
-**[↑ Back to Tutorial Home](../../README.md)**
+Continue with **[Exercise 6: Debug ABAP Code in Visual Studio Code](../ex06/README.md)** or **[Exercise 7: Create a Custom Agent](../ex07/README.md)**, both optional.
 
----
+**[Back to Tutorial Home](../../README.md)**
