@@ -8,44 +8,17 @@ You will debug the executable Travel application from [Exercise 4](../ex04/READM
 
 ### Exercises
 
-- [6.1 - Understand the Visual Studio Code Debugger for ABAP](#exercise-61-understand-the-visual-studio-code-debugger-for-abap)
-- [6.2 - Set Breakpoints in the Service and Helper](#exercise-62-set-breakpoints-in-the-service-and-helper)
-- [6.3 - Trigger and Attach the Debugger](#exercise-63-trigger-and-attach-the-debugger)
-- [6.4 - Inspect Variables and Step Through Code](#exercise-64-inspect-variables-and-step-through-code)
-- [6.5 - Use the Watch View and Call Stack](#exercise-65-use-the-watch-view-and-call-stack)
+- [6.1 - Set Breakpoints in the Service and Helper](#exercise-61-set-breakpoints-in-the-service-and-helper)
+- [6.2 - Trigger and Attach the Debugger](#exercise-62-trigger-and-attach-the-debugger)
+- [6.3 - Inspect Variables and Step Through Code](#exercise-63-inspect-variables-and-step-through-code)
+- [6.4 - Use the Watch View and Call Stack](#exercise-64-use-the-watch-view-and-call-stack)
 - [Summary](#summary)
 
 > Replace `####` with your four-digit group ID. Complete Exercise 4 first and activate all source changes before debugging.
 
 ---
 
-## Exercise 6.1: Understand the Visual Studio Code Debugger for ABAP
-[^Top of page](#)
-
-<details>
-  <summary>🔵 Click to expand!</summary>
-
-1. Open **Run & Debug** from the Activity Bar, or press **Ctrl+Shift+D** (macOS: **Cmd+Shift+D**).
-2. Familiarize yourself with the panels you will use:
-
-   > **Note:** This section is an introduction. The debugger panels and debug toolbar are only fully visible once you start debugging in [Exercise 6.3](#exercise-63-trigger-and-attach-the-debugger). Variables and call-stack details become available when execution pauses at a breakpoint. If you cannot see them yet, continue with Exercise 6.2 and return to this overview during the debugging session.
-
-   | Panel | Purpose |
-   |-------|---------|
-   | Variables | Values in the selected stack frame |
-   | Watch | Expressions you want to inspect repeatedly |
-   | Call Stack | Method calls leading to the current statement |
-   | Breakpoints | Active and disabled breakpoints |
-
-3. During a paused session, use **Continue**, **Step Over**, **Step Into**, **Step Out**, and **Stop** from the debug toolbar. Standard VS Code shortcuts are F5, F10, F11, Shift+F11, and Shift+F5 respectively; use toolbar controls if your keybindings differ.
-
-See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugtest/debugging) for the debugger interface and [SAP's ADT tutorial](https://developers.sap.com/tutorials/abap-environment-adt-coretools-vscode) for ABAP tooling.
-
-</details>
-
----
-
-## Exercise 6.2: Set Breakpoints in the Service and Helper
+## Exercise 6.1: Set Breakpoints in the Service and Helper
 [^Top of page](#)
 
 <details>
@@ -56,7 +29,7 @@ See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugte
 3. Click the editor gutter beside the helper call to set a breakpoint.
 4. Set another breakpoint on `MODIFY ytravel#### FROM @is_travel`.
 5. Open `YCL_TRAVEL_HELPER_####` and set a breakpoint on the `SELECT SINGLE` statement.
-6. Confirm all three entries appear in the Breakpoints panel.
+6. Open **Run & Debug** from the Activity Bar, or press **Ctrl+Shift+D** (macOS: **Cmd+Shift+D**), and confirm all three entries appear in the Breakpoints panel.
 
 > The first breakpoint identifies each save attempt; the SQL-write breakpoint shows whether that attempt reaches persistence.
 
@@ -64,7 +37,7 @@ See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugte
 
 ---
 
-## Exercise 6.3: Trigger and Attach the Debugger
+## Exercise 6.2: Trigger and Attach the Debugger
 [^Top of page](#)
 
 <details>
@@ -73,7 +46,19 @@ See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugte
 1. Open `YCL_TRAVEL_APP_####`. Ensure its fixed travel/customer constants still match your sample data and that the invalid customer is absent.
 2. Run **ABAP: Run ABAP Application (Console)** from the Command Palette with the same destination and user used to set the breakpoints.
 3. If ADT requests permission to attach to the ABAP debugging session, accept it. The editor should pause at the service's helper call for the valid save.
-4. Now that execution is paused, locate the panels and debug toolbar introduced in [Exercise 6.1](#exercise-61-understand-the-visual-studio-code-debugger-for-abap). Confirm the current source statement and the Variables panel are visible before stepping.
+4. Now that execution is paused, open **Run & Debug** if needed. The debugger panels and debug toolbar are now fully visible. Familiarize yourself with the panels:
+
+   | Panel | Purpose |
+   |-------|---------|
+   | Variables | Values in the selected stack frame |
+   | Watch | Expressions you want to inspect repeatedly |
+   | Call Stack | Method calls leading to the current statement |
+   | Breakpoints | Active and disabled breakpoints |
+
+5. Locate **Continue**, **Step Over**, **Step Into**, **Step Out**, and **Stop** in the debug toolbar. Standard VS Code shortcuts are F5, F10, F11, Shift+F11, and Shift+F5 respectively; use toolbar controls if your keybindings differ. You will use these controls in the next section.
+6. Confirm the current source statement and the Variables panel are visible before stepping.
+
+See [VS Code debugging documentation](https://code.visualstudio.com/docs/debugtest/debugging) for the debugger interface and [SAP's ADT tutorial](https://developers.sap.com/tutorials/abap-environment-adt-coretools-vscode) for ABAP tooling.
 
 If execution finishes without stopping, verify that breakpoints are enabled and bound, source is active, and the selected class reaches `save_travel`. Recheck the destination and user. If your backend or ADT version cannot attach, record the version and ask the instructor to check debugger support and authorizations; the console and unit-test exercises remain usable.
 
@@ -81,7 +66,7 @@ If execution finishes without stopping, verify that breakpoints are enabled and 
 
 ---
 
-## Exercise 6.4: Inspect Variables and Step Through Code
+## Exercise 6.3: Inspect Variables and Step Through Code
 [^Top of page](#)
 
 <details>
@@ -101,7 +86,7 @@ If execution finishes without stopping, verify that breakpoints are enabled and 
 
 ---
 
-## Exercise 6.5: Use the Watch View and Call Stack
+## Exercise 6.4: Use the Watch View and Call Stack
 [^Top of page](#)
 
 <details>
