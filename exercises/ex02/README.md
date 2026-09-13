@@ -1,3 +1,5 @@
+**English** | [Deutsch](README.de.md)
+
 [Home - Build an ABAP Travel Application with GitHub Copilot and ADT in Visual Studio Code](../../README.md)
 
 # Exercise 2: Generate the ABAP Travel Application
