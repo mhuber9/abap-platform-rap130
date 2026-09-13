@@ -7,8 +7,8 @@ Use these prompts with **`abap-developer`** selected in **GitHub Copilot Chat**,
 ## General principles
 
 - Specify exact object names, package `$TMP`, and the connected destination.
-- Inspect existing source and available tools before making changes.
-- Use ADT object-creation tools where supported, and edit source through the ADT virtual workspace.
+- Rely on the configured General and Testing instructions in `abap-developer`. Do not repeat cloud syntax, MCP usage, virtual-workspace search, editor operations, or routine testing rules in every prompt.
+- Specify application behavior, relevant objects, and scenario-specific test cases.
 - Review the source before activation and tests. Review proposed fixes rather than weakening failing assertions.
 - Keep sample loading repeatable and `/DMO/` data read-only. The executable class owns transaction boundaries.
 - Distinguish observed tool results from suggested code or unexecuted checks.
@@ -20,7 +20,7 @@ Use these prompts with **`abap-developer`** selected in **GitHub Copilot Chat**,
 ```text
 Identify the available ADT tools for creating classes and database tables,
 activating objects, and running unit tests. Read /DMO/TRAVEL_DATA and
-/DMO/BOOKING_DATA through the connected ADT workspace and summarize their keys.
+/DMO/BOOKING_DATA and summarize their keys.
 Do not change or activate anything.
 ```
 
@@ -32,7 +32,7 @@ After reviewing the source:
 
 ```text
 Activate YTRAVEL#### and YBOOKING####, then YCL_TRAVEL_SERVICE_####, then
-YCL_TRAVEL_APP_#### using the available ADT tools. Report actual activation results.
+YCL_TRAVEL_APP_####. Report actual activation results.
 ```
 
 ### Exercise 3 — Load and display sample data
@@ -68,8 +68,8 @@ Show tests for review before activation and execution.
 Use the [service test cases](../exercises/ex05/README.md#exercise-52-verify-rejection-before-persistence) to prove invalid saves do not insert or change participant rows. After reviewing both classes:
 
 ```text
-Run ABAP Unit tests for YCL_TRAVEL_HELPER_#### and YCL_TRAVEL_SERVICE_#### using
-available ADT tools. Report the actual results. Explain any failures and propose
+Run ABAP Unit tests for YCL_TRAVEL_HELPER_#### and YCL_TRAVEL_SERVICE_####.
+Report the actual results. Explain any failures and propose
 corrections for review without removing the failed requirements.
 ```
 

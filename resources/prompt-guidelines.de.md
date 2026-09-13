@@ -7,8 +7,8 @@ Verwende diese Prompts mit **`abap-developer`** in **GitHub Copilot Chat**, verb
 ## Allgemeine Grundsätze
 
 - Gib exakte Objektnamen, das Paket `$TMP` und die verbundene Destination an.
-- Untersuche vor Änderungen den vorhandenen Quellcode und die verfügbaren Werkzeuge.
-- Verwende unterstützte ADT-Werkzeuge zur Objektanlage und bearbeite Quellcode über den virtuellen ADT-Workspace.
+- Verlasse dich auf die konfigurierten General- und Testing-Anweisungen in `abap-developer`. Wiederhole Regeln zu Cloud-Syntax, MCP-Nutzung, virtueller Workspace-Suche, Editorbedienung oder routinemäßigen Tests nicht in jedem Prompt.
+- Beschreibe das Anwendungsverhalten, relevante Objekte und szenariospezifische Testfälle.
 - Prüfe Quellcode vor Aktivierung und Tests. Prüfe vorgeschlagene Korrekturen, statt fehlgeschlagene Assertions abzuschwächen.
 - Gestalte das Laden der Beispieldaten wiederholbar und greife ausschließlich lesend auf `/DMO/`-Daten zu. Die ausführbare Klasse steuert die Transaktionsgrenzen.
 - Unterscheide beobachtete Werkzeugergebnisse von vorgeschlagenem Code oder nicht ausgeführten Prüfungen.
@@ -20,7 +20,7 @@ Verwende diese Prompts mit **`abap-developer`** in **GitHub Copilot Chat**, verb
 ```text
 Ermittle die verfügbaren ADT-Werkzeuge zum Anlegen von Klassen und Datenbanktabellen,
 zum Aktivieren von Objekten und zum Ausführen von Unit-Tests. Lies /DMO/TRAVEL_DATA
-und /DMO/BOOKING_DATA über den verbundenen ADT-Workspace und fasse ihre Schlüssel zusammen.
+und /DMO/BOOKING_DATA und fasse ihre Schlüssel zusammen.
 Ändere und aktiviere nichts.
 ```
 
@@ -31,7 +31,7 @@ Verwende den vollständigen [Erstellungs-Prompt aus Übung 2](../exercises/ex02/
 Nach der Quellcodeprüfung:
 
 ```text
-Aktiviere mit den verfügbaren ADT-Werkzeugen zunächst YTRAVEL#### und YBOOKING####,
+Aktiviere zunächst YTRAVEL#### und YBOOKING####,
 dann YCL_TRAVEL_SERVICE_#### und anschließend YCL_TRAVEL_APP_####.
 Berichte die tatsächlichen Aktivierungsergebnisse.
 ```
@@ -70,7 +70,7 @@ Zeige die Tests vor Aktivierung und Ausführung zur Prüfung.
 Verwende die [Servicetestfälle](../exercises/ex05/README.de.md#übung-52-ablehnung-vor-dem-datenbankschreibzugriff-prüfen), um nachzuweisen, dass ungültige Speicherversuche keine Teilnehmerzeilen einfügen oder ändern. Nach der Prüfung beider Klassen:
 
 ```text
-Führe mit den verfügbaren ADT-Werkzeugen ABAP Unit-Tests für YCL_TRAVEL_HELPER_####
+Führe ABAP Unit-Tests für YCL_TRAVEL_HELPER_####
 und YCL_TRAVEL_SERVICE_#### aus. Berichte die tatsächlichen Ergebnisse.
 Erkläre Fehler und schlage Korrekturen zur Prüfung vor, ohne die fehlgeschlagenen
 Anforderungen zu entfernen.

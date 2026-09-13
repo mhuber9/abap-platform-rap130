@@ -76,11 +76,7 @@ My group ID is <your_id>. Use this value wherever #### appears in object names, 
 4. Replace `####` with your four-digit group ID in the following prompt. Keep `$TMP` unchanged and send it using **`abap-developer`**:
 
    ```text
-   Create a plain ABAP Cloud Travel and Booking application in the existing local package $TMP.
-   Do not create a package or transport request.
-   Use ADT object-creation tools where supported and edit the source in the ADT
-   virtual workspace. If an object type cannot be created with the available tools,
-   tell me which object to create using ABAP: Create New ABAP Object, then continue.
+   Create a Travel and Booking console application.
 
    Create these objects with exactly these names:
    - YTRAVEL####: client-dependent transparent table based on /DMO/TRAVEL_DATA.

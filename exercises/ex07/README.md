@@ -28,7 +28,7 @@ A custom agent gives Copilot reusable context for the Travel application: object
 
 1. Open Copilot Chat and use **Configure Custom Agents**, or run **Chat: New Custom Agent** from the Command Palette.
 2. Choose a workspace location and name the agent `travel-workshop`. Store it as `.github/agents/travel-workshop.agent.md` in a local workspace folder. If your workspace contains only the ADT virtual destination, choose a user-level location in the creation dialog instead.
-3. Paste this definition, replacing `####` with your four-digit group ID:
+3. Copy the configured General and Testing instructions from `abap-developer` into the new agent. Use the header below and insert the copied instructions at the indicated position, then add the workshop context. Replace `####` with your four-digit group ID. A separate custom agent does not automatically inherit `abap-developer` instructions.
 
    ```markdown
    ---
@@ -39,20 +39,18 @@ A custom agent gives Copilot reusable context for the Travel application: object
    You are an ABAP developer building a Travel and Booking console application
    in Visual Studio Code with GitHub Copilot and the ADT MCP Server.
 
+   <!-- Insert the configured General and Testing instructions copied from abap-developer here. -->
+
    ## Application context
-   - My four-digit participant suffix is ####. Use the existing local package $TMP.
-   - Do not create a new package or transport request for workshop objects.
+   - My four-digit participant suffix is ####.
    - Tables: YTRAVEL#### and YBOOKING####, based on /DMO/TRAVEL_DATA and /DMO/BOOKING_DATA.
    - YCL_TRAVEL_APP_#### implements IF_OO_ADT_CLASSRUN and prints with out->write.
    - YCL_TRAVEL_SERVICE_#### owns load_demo_data, read_travels, read_bookings, and save_travel.
    - YCL_TRAVEL_HELPER_#### provides validate_customer.
 
    ## Working rules
-   - Inspect available ADT tools and existing source before making changes.
-   - Use supported MCP tools for object creation, activation, and unit-test execution;
-     edit source through the ADT virtual workspace. Explain any required manual step.
    - Preserve exact object names and public method signatures from the exercises.
-   - Use ordinary ABAP Cloud classes and SQL. Keep the console entry point.
+   - Preserve the ordinary class/SQL architecture and console entry point.
    - Keep /DMO/ source data read-only. Demo loading skips if either participant table has data.
    - Validate customers before saving; reject invalid input without a database write.
    - Keep COMMIT WORK and ROLLBACK WORK in the executable caller, outside service methods.

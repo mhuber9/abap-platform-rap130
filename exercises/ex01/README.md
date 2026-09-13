@@ -148,7 +148,7 @@ If the ADT MCP Server does not appear or fails to start:
    - Click the **Copilot icon** in the Activity Bar (left), or
    - Press **`Ctrl+Shift+I`** (macOS: **`Cmd+Shift+I`**)
 
-2. Select **`abap-developer`** in the chat agent dropdown.
+2. Select **`abap-developer`** in the chat agent dropdown. Configure its package as `$TMP`, object prefix as `Y`, and MCP server as your connected ADT MCP server. Its General and Testing instructions already define cloud-compliant ABAP, directory-first searches, editing through VS Code, test-include placement, and test execution after source or test changes. The exercise prompts focus on application requirements rather than repeating those rules.
 
    > ℹ️ Use **`abap-developer`** throughout the application exercises. If it is missing from the dropdown, ask the instructor to provide the workshop agent configuration before continuing.
 
@@ -168,8 +168,7 @@ If the ADT MCP Server does not appear or fails to start:
    ```text
    Inspect the ADT MCP tools available in this session. Identify the tools for
    creating ABAP classes and database tables, activating objects, and running
-   ABAP Unit tests. Explain how you will read and edit source through the ADT
-   virtual workspace. Do not create, change, or activate any objects yet.
+   ABAP Unit tests. Do not create, change, or activate any objects yet.
    ```
 
 7. Compare the answer with the enabled tool list. A description alone does not prove a backend connection. Ask Copilot to read the existing `/DMO/TRAVEL_DATA` and `/DMO/BOOKING_DATA` structures through the connected ADT workspace and summarize their keys and fields without editing them.

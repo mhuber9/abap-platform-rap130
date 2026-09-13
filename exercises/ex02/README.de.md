@@ -75,12 +75,7 @@ Meine Gruppen-ID ist <your_id>. Verwende diesen Wert überall dort, wo #### in O
 4. Ersetze `####` im folgenden Prompt durch deine vierstellige Gruppen-ID. Lass `$TMP` unverändert und sende den Prompt mit **`abap-developer`**:
 
    ```text
-   Erstelle eine einfache ABAP-Cloud-Anwendung für Travel und Booking im vorhandenen lokalen Paket $TMP.
-   Lege weder ein Paket noch einen Transportauftrag an.
-   Verwende unterstützte ADT-Werkzeuge zur Objektanlage und bearbeite den Quellcode
-   im virtuellen ADT-Workspace. Falls ein Objekttyp mit den verfügbaren Werkzeugen
-   nicht angelegt werden kann, nenne mir das Objekt, das ich mit
-   ABAP: Create New ABAP Object anlegen soll, und fahre danach fort.
+   Erstelle eine Konsolenanwendung für Travel und Booking.
 
    Lege diese Objekte mit genau diesen Namen an:
    - YTRAVEL####: mandantenabhängige transparente Tabelle auf Basis von /DMO/TRAVEL_DATA.

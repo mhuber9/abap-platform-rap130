@@ -28,7 +28,7 @@ Ein eigener Agent gibt Copilot wiederverwendbaren Kontext zur Travel-Anwendung: 
 
 1. Öffne Copilot Chat und verwende **Configure Custom Agents** oder führe **Chat: New Custom Agent** über die Command Palette aus.
 2. Wähle einen Speicherort im Workspace und nenne den Agenten `travel-workshop`. Speichere ihn als `.github/agents/travel-workshop.agent.md` in einem lokalen Workspace-Ordner. Falls dein Workspace nur die virtuelle ADT-Destination enthält, wähle im Erstellungsdialog stattdessen einen Speicherort auf Benutzerebene.
-3. Füge diese Definition ein und ersetze `####` durch deine vierstellige Gruppen-ID:
+3. Kopiere die konfigurierten General- und Testing-Anweisungen aus `abap-developer` in den neuen Agenten. Verwende den folgenden Kopfbereich, füge die kopierten Anweisungen an der markierten Stelle ein und ergänze anschließend den Workshop-Kontext. Ersetze `####` durch deine vierstellige Gruppen-ID. Ein separater eigener Agent übernimmt die Anweisungen von `abap-developer` nicht automatisch.
 
    ```markdown
    ---
@@ -39,20 +39,18 @@ Ein eigener Agent gibt Copilot wiederverwendbaren Kontext zur Travel-Anwendung: 
    Du bist ABAP-Entwickler und erstellst eine Konsolenanwendung für Reisen und Buchungen
    in Visual Studio Code mit GitHub Copilot und dem ADT MCP Server.
 
+   <!-- Hier die konfigurierten General- und Testing-Anweisungen aus abap-developer einfügen. -->
+
    ## Anwendungskontext
-   - Mein vierstelliges Teilnehmersuffix ist ####. Verwende das vorhandene lokale Paket $TMP.
-   - Lege für Workshop-Objekte weder ein neues Paket noch einen Transportauftrag an.
+   - Mein vierstelliges Teilnehmersuffix ist ####.
    - Tabellen: YTRAVEL#### und YBOOKING#### auf Basis von /DMO/TRAVEL_DATA und /DMO/BOOKING_DATA.
    - YCL_TRAVEL_APP_#### implementiert IF_OO_ADT_CLASSRUN und gibt Daten mit out->write aus.
    - YCL_TRAVEL_SERVICE_#### enthält load_demo_data, read_travels, read_bookings und save_travel.
    - YCL_TRAVEL_HELPER_#### stellt validate_customer bereit.
 
    ## Arbeitsregeln
-   - Untersuche vor Änderungen die verfügbaren ADT-Werkzeuge und den vorhandenen Quellcode.
-   - Nutze unterstützte MCP-Werkzeuge für Objektanlage, Aktivierung und Unit-Test-Ausführung.
-     Bearbeite Quellcode über den virtuellen ADT-Workspace. Erkläre notwendige manuelle Schritte.
    - Behalte die exakten Objektnamen und öffentlichen Methodensignaturen aus den Übungen bei.
-   - Verwende normale ABAP-Cloud-Klassen und SQL. Behalte den Konsoleneinstiegspunkt bei.
+   - Behalte die Architektur mit normalen Klassen und SQL sowie den Konsoleneinstiegspunkt bei.
    - Lies /DMO/-Quelldaten nur. Überspringe das Laden der Beispieldaten, wenn eine der Teilnehmertabellen Daten enthält.
    - Validiere Kunden vor dem Speichern. Lehne ungültige Eingaben ohne Datenbankschreibzugriff ab.
    - Belasse COMMIT WORK und ROLLBACK WORK im ausführbaren Aufrufer, außerhalb der Servicemethoden.

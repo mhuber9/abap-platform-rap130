@@ -140,7 +140,7 @@ Falls der ADT MCP Server nicht erscheint oder nicht startet:
 1. Öffne **GitHub Copilot Chat** in Visual Studio Code:
    - Klicke auf das Copilot-Symbol in der Activity Bar links oder
    - drücke **`Ctrl+Shift+I`** (macOS: **`Cmd+Shift+I`**).
-2. Wähle **`abap-developer`** in der Agentenauswahl des Chats.
+2. Wähle **`abap-developer`** in der Agentenauswahl des Chats. Konfiguriere `$TMP` als Paket, `Y` als Objektpräfix und deinen verbundenen ADT MCP Server als MCP-Server. Die General- und Testing-Anweisungen legen bereits cloudkonformes ABAP, die Suche zuerst über Verzeichnisse, die Bearbeitung im VS-Code-Editor, die Ablage im Testklassen-Include und die Testausführung nach Quellcode- oder Teständerungen fest. Die Übungs-Prompts konzentrieren sich auf die Anwendungsanforderungen, statt diese Regeln zu wiederholen.
 
    > ℹ️ Verwende **`abap-developer`** in allen Anwendungsübungen. Falls der Eintrag fehlt, bitte die Kursleitung um die Workshop-Agentenkonfiguration, bevor du fortfährst.
 
@@ -157,8 +157,7 @@ Falls der ADT MCP Server nicht erscheint oder nicht startet:
    ```text
    Untersuche die in dieser Sitzung verfügbaren ADT-MCP-Werkzeuge. Ermittle die
    Werkzeuge zum Anlegen von ABAP-Klassen und Datenbanktabellen, zum Aktivieren
-   von Objekten und zum Ausführen von ABAP Unit-Tests. Erkläre, wie du Quellcode
-   über den virtuellen ADT-Workspace liest und bearbeitest.
+   von Objekten und zum Ausführen von ABAP Unit-Tests.
    Lege noch keine Objekte an, ändere nichts und aktiviere nichts.
    ```
 7. Vergleiche die Antwort mit der Liste aktivierter Werkzeuge. Eine Beschreibung allein belegt noch keine Backend-Verbindung. Bitte Copilot, die vorhandenen Strukturen `/DMO/TRAVEL_DATA` und `/DMO/BOOKING_DATA` über den verbundenen ADT-Workspace zu lesen und ihre Schlüssel und Felder zusammenzufassen, ohne sie zu bearbeiten.
