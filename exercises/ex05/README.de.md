@@ -49,6 +49,9 @@ Jetzt erzeugst du isolierte ABAP Unit-Tests für Hilfsklasse und Service, prüfs
 3. Prüfe die erzeugten Tests und bestätige Aktivierung und Ausführung. Copilot kann **`abap_activate-objects`** und **`abap_run_unit_tests`** verwenden, sofern sie in deiner installierten Tool-Liste verfügbar sind. Prüfe bei Fehlern die Diagnose und Korrekturen und führe die Tests erneut aus.
 4. Prüfe die Testergebnisse im Panel **Test Results**.
 5. Optional kannst du die Unit-Tests zur Kontrolle manuell ausführen: Öffne die **Command Palette** (**`Ctrl+Shift+P`** / **`Cmd+Shift+P`**) und wähle **"ABAP: Run ABAP Unit Tests"**.
+
+   ![ABAP Unit-Tests in Visual Studio Code ausführen](images/ex05_run_unit_tests.gif)
+
 6. Prüfe, dass die lokalen Testklassen entsprechend den Anweisungen von `abap-developer` im separaten Testklassen-Include stehen und nicht im Hauptquellcode der Klasse. Dein Code sollte ungefähr so aussehen:
 
    > ℹ️ Ersetze **`####`** durch deine zugewiesene Gruppen-ID oder dein gewähltes Suffix.

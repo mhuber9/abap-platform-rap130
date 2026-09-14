@@ -54,6 +54,9 @@ In this exercise, you will generate isolated ABAP unit tests for the helper and 
 
 5. Optionally, double-check by running the unit tests manually: open the **Command Palette** (**`Ctrl+Shift+P`** / **`Cmd+Shift+P`**) and select **"ABAP: Run ABAP Unit Tests"**.
 
+   ![Running ABAP Unit tests in Visual Studio Code](images/ex05_run_unit_tests.gif)
+
+
 
 6. Verify that the local test classes are in the dedicated testclass include, as required by `abap-developer`, rather than in the main class source. Your code should look something like this:
    
