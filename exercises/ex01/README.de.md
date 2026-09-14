@@ -8,15 +8,15 @@
 
 In der vorherigen Übung hast du Visual Studio Code und die ADT-Erweiterung installiert und dich mit deinem ABAP-System verbunden (siehe [Erste Schritte](../ex0/README.de.md)).
 
-Jetzt aktivierst du den in ADT for Visual Studio Code integrierten **ADT MCP Server** und prüfst, ob die MCP-Werkzeuge verfügbar sind.
+Jetzt aktivierst du den in ADT for Visual Studio Code integrierten **ADT MCP Server** und prüfst, ob die MCP-Tools verfügbar sind.
 
-Der ADT MCP Server stellt ABAP-Entwicklungsfunktionen als **Model Context Protocol (MCP)-Werkzeuge** bereit. Über natürlichsprachliche Prompts kannst du damit ABAP-Objekte anlegen und aktivieren sowie Unit-Tests ausführen. Weitere Informationen findest du unter [Agentic AI for ABAP Development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agentic-ai-development?locale=en-US).
+Der ADT MCP Server stellt ABAP-Entwicklungsfunktionen als **Model Context Protocol (MCP)-Tools** bereit. Über natürlichsprachliche Prompts kannst du damit ABAP-Objekte anlegen und aktivieren sowie Unit-Tests ausführen. Weitere Informationen findest du unter [Agentic AI for ABAP Development](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/agentic-ai-development?locale=en-US).
 
 ### Übungen
 
 - [1.1 – Den ADT MCP Server in den Einstellungen aktivieren](#übung-11-den-adt-mcp-server-in-den-einstellungen-aktivieren)
 - [1.2 – Prüfen, ob der MCP-Server läuft](#übung-12-prüfen-ob-der-mcp-server-läuft)
-- [1.3 – Die ADT-MCP-Werkzeuge im Agenten prüfen](#übung-13-die-adt-mcp-werkzeuge-im-agenten-prüfen)
+- [1.3 – Die ADT-MCP-Tools im Agenten prüfen](#übung-13-die-adt-mcp-tools-im-agenten-prüfen)
 - [Zusammenfassung und nächste Übung](#zusammenfassung-und-nächste-übung)
 
 > ℹ️ **Erinnerung:** Ersetze in den folgenden Schritten den Platzhalter **`####`** durch deine vierstellige Gruppen-ID.
@@ -25,21 +25,21 @@ Der ADT MCP Server stellt ABAP-Entwicklungsfunktionen als **Model Context Protoc
 
 ## Über den ADT MCP Server 💎
 
-Der **ADT MCP Server** ist ein lokaler HTTP-Server innerhalb der ADT-Erweiterung für Visual Studio Code. Er implementiert das **Model Context Protocol (MCP)**, einen offenen Standard, über den KI-Assistenten wie GitHub Copilot Werkzeuge strukturiert und authentifiziert aufrufen können.
+Der **ADT MCP Server** ist ein lokaler HTTP-Server innerhalb der ADT-Erweiterung für Visual Studio Code. Er implementiert das **Model Context Protocol (MCP)**, einen offenen Standard, über den KI-Assistenten wie GitHub Copilot Tools strukturiert und authentifiziert aufrufen können.
 
-Nach seiner Aktivierung stellt der MCP-Server ABAP-Entwicklungswerkzeuge für MCP-kompatible KI-Clients bereit. In diesem Workshop verwenden wir **GitHub Copilot** als Client. Voraussetzung für andere Coding-Agenten ist die Unterstützung des virtuellen Workspace-Dateisystems von Visual Studio Code. GitHub Copilot ist hierfür bestätigt; weitere Agenten werden ebenfalls unterstützt.
+Nach seiner Aktivierung stellt der MCP-Server ABAP-Entwicklungstools für MCP-kompatible KI-Clients bereit. In diesem Workshop verwenden wir **GitHub Copilot** als Client. Voraussetzung für andere Coding-Agenten ist die Unterstützung des virtuellen Workspace-Dateisystems von Visual Studio Code. GitHub Copilot ist hierfür bestätigt; weitere Agenten werden ebenfalls unterstützt.
 
-**Werkzeuge in diesem Workshop – prüfe ihre Verfügbarkeit in deiner installierten Version:**
+**Tools in diesem Workshop – prüfe ihre Verfügbarkeit in deiner installierten Version:**
 
-| Werkzeug | Beschreibung |
+| Tool | Beschreibung |
 |------|-------------|
 | `abap_creation-create_object` | Legt ABAP-Entwicklungsobjekte an |
 | `abap_activate-objects` | Aktiviert ABAP-Objekte im Backend-System |
 | `abap_run_unit_tests` | Führt ABAP Unit-Tests aus |
 
-Copilot bearbeitet ABAP-Quellcode über den virtuellen ADT-Workspace und verwendet verfügbare MCP-Werkzeuge für Backend-Operationen. Objektanlage und Quellcodebearbeitung sind getrennte Schritte; diese Übung verwendet keinen Anwendungsgenerator.
+Copilot bearbeitet ABAP-Quellcode über den virtuellen ADT-Workspace und verwendet verfügbare MCP-Tools für Backend-Operationen. Objektanlage und Quellcodebearbeitung sind getrennte Schritte; diese Übung verwendet keinen Anwendungsgenerator.
 
-Eine vollständige Werkzeugliste findest du unter [ADT MCP Tools](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/mcp-tools?locale=en-US).
+Eine vollständige Tool-Liste findest du unter [ADT MCP Tools](https://help.sap.com/docs/abap-cloud/abap-development-tools-for-visual-studio-code/mcp-tools?locale=en-US).
 
 > ⚠ **Hinweis zu KI-Ausgaben** ⚠
 > Der ADT MCP Server ist eine **experimentelle Funktion**, die sich jederzeit ohne Ankündigung ändern kann. Er ist nicht für den produktiven Einsatz vorgesehen. Sichere deine Daten vor der Verwendung.
@@ -129,10 +129,10 @@ Falls der ADT MCP Server nicht erscheint oder nicht startet:
 
 ---
 
-## Übung 1.3: Die ADT-MCP-Werkzeuge im Agenten prüfen
+## Übung 1.3: Die ADT-MCP-Tools im Agenten prüfen
 [↑ Zum Seitenanfang](#)
 
-> Wähle **`abap-developer`** in GitHub Copilot Chat und prüfe, ob die ADT-MCP-Werkzeuge geladen und verfügbar sind.
+> Wähle **`abap-developer`** in GitHub Copilot Chat und prüfe, ob die ADT-MCP-Tools geladen und verfügbar sind.
 
 <details>
   <summary>🔵 Zum Aufklappen klicken!</summary>
@@ -144,26 +144,26 @@ Falls der ADT MCP Server nicht erscheint oder nicht startet:
 
    > ℹ️ Verwende **`abap-developer`** in allen Anwendungsübungen. Falls der Eintrag fehlt, bitte die Kursleitung um die Workshop-Agentenkonfiguration, bevor du fortfährst.
 
-3. Klicke im Eingabebereich von Copilot Chat auf **"Configure Tools"** (Werkzeugsymbol).
-4. In der Auswahlliste der Werkzeuganbieter solltest du Folgendes sehen:
-   - **ADT MCP Server** mit einer Werkzeugliste, zum Beispiel `abap_creation-create_object` und `abap_activate-objects`.
+3. Klicke im Eingabebereich von Copilot Chat auf **"Configure Tools"** (Tool-Symbol).
+4. In der Auswahlliste der Tool-Anbieter solltest du Folgendes sehen:
+   - **ADT MCP Server** mit einer Tool-Liste, zum Beispiel `abap_creation-create_object` und `abap_activate-objects`.
 
-   > ✅ Wenn der ADT MCP Server und seine Werkzeuge angezeigt werden, ist die Einrichtung abgeschlossen.
+   > ✅ Wenn der ADT MCP Server und seine Tools angezeigt werden, ist die Einrichtung abgeschlossen.
 
-   ![ADT-MCP-Werkzeuge in Copilot Configure Tools](images/ex1_mcp_tools_visible.png)
+   ![ADT-MCP-Tools in Copilot Configure Tools](images/ex1_mcp_tools_visible.png)
 
-5. Stelle sicher, dass die ADT-MCP-Werkzeuge in der Liste ausgewählt und aktiviert sind.
-6. **Werkzeuge erkunden:** Gib diesen Prompt in Copilot Chat ein:
+5. Stelle sicher, dass die ADT-MCP-Tools in der Liste ausgewählt und aktiviert sind.
+6. **Tools erkunden:** Gib diesen Prompt in Copilot Chat ein:
    ```text
-   Untersuche die in dieser Sitzung verfügbaren ADT-MCP-Werkzeuge. Ermittle die
-   Werkzeuge zum Anlegen von ABAP-Klassen und Datenbanktabellen, zum Aktivieren
+   Untersuche die in dieser Sitzung verfügbaren ADT-MCP-Tools. Ermittle die
+   Tools zum Anlegen von ABAP-Klassen und Datenbanktabellen, zum Aktivieren
    von Objekten und zum Ausführen von ABAP Unit-Tests.
    Lege noch keine Objekte an, ändere nichts und aktiviere nichts.
    ```
-7. Vergleiche die Antwort mit der Liste aktivierter Werkzeuge. Eine Beschreibung allein belegt noch keine Backend-Verbindung. Bitte Copilot, die vorhandenen Strukturen `/DMO/TRAVEL_DATA` und `/DMO/BOOKING_DATA` über den verbundenen ADT-Workspace zu lesen und ihre Schlüssel und Felder zusammenzufassen, ohne sie zu bearbeiten.
+7. Vergleiche die Antwort mit der Liste aktivierter Tools. Eine Beschreibung allein belegt noch keine Backend-Verbindung. Bitte Copilot, die vorhandenen Strukturen `/DMO/TRAVEL_DATA` und `/DMO/BOOKING_DATA` über den verbundenen ADT-Workspace zu lesen und ihre Schlüssel und Felder zusammenzufassen, ohne sie zu bearbeiten.
 8. Prüfe angeforderte Leseoperationen und ihre Systemdestination. Stelle sicher, dass tatsächlich Objektinhalte zurückgegeben werden. Falls der Zugriff fehlschlägt, verbinde die Destination erneut und prüfe vor dem Fortfahren, ob das Flight Reference Scenario installiert ist.
 
-   > ✅ **Erfolg:** Copilot kann vorhandenen ABAP-Quellcode lesen; Werkzeuge für Anlage, Aktivierung und Tests sind verfügbar. Falls deine Version einen benötigten Objekttyp nicht per Werkzeug anlegen kann, verwende in Übung 2 **ABAP: Create New ABAP Object** und lass Copilot anschließend den Quellcode bearbeiten.
+   > ✅ **Erfolg:** Copilot kann vorhandenen ABAP-Quellcode lesen; Tools für Anlage, Aktivierung und Tests sind verfügbar. Falls deine Version einen benötigten Objekttyp nicht per Tool anlegen kann, verwende in Übung 2 **ABAP: Create New ABAP Object** und lass Copilot anschließend den Quellcode bearbeiten.
 
 </details>
 
@@ -176,7 +176,7 @@ Du hast:
 
 - Den ADT MCP Server in den Einstellungen der VS-Code-Erweiterung aktiviert.
 - Über eine Benachrichtigung oder `MCP: List Servers` geprüft, ob der Server läuft.
-- Bestätigt, dass die ADT-MCP-Werkzeuge für **`abap-developer`** in GitHub Copilot Chat sichtbar und aufrufbar sind.
+- Bestätigt, dass die ADT-MCP-Tools für **`abap-developer`** in GitHub Copilot Chat sichtbar und aufrufbar sind.
 
 Weiter geht es mit **[Übung 2: Die ABAP-Travel-Anwendung erzeugen](../ex02/README.de.md)**.
 

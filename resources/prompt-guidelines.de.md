@@ -2,7 +2,7 @@
 
 # Prompt-Leitlinien für den ABAP-Travel-Workshop
 
-Verwende diese Prompts mit **`abap-developer`** in **GitHub Copilot Chat**, verbunden mit den **ADT-MCP-Werkzeugen**. Verwende das Paket `$TMP` und ersetze `####` vor dem Absenden in Klassen- und Tabellennamen durch dein vierstelliges Teilnehmersuffix. Die verlinkten Übungen enthalten die vollständigen Vorgaben. Nutze sie für die erstmalige Erstellung, statt Copilot die Anwendungsschnittstellen selbst festlegen zu lassen.
+Verwende diese Prompts mit **`abap-developer`** in **GitHub Copilot Chat**, verbunden mit den **ADT-MCP-Tools**. Verwende das Paket `$TMP` und ersetze `####` vor dem Absenden in Klassen- und Tabellennamen durch dein vierstelliges Teilnehmersuffix. Die verlinkten Übungen enthalten die vollständigen Vorgaben. Nutze sie für die erstmalige Erstellung, statt Copilot die Anwendungsschnittstellen selbst festlegen zu lassen.
 
 ## Allgemeine Grundsätze
 
@@ -11,14 +11,14 @@ Verwende diese Prompts mit **`abap-developer`** in **GitHub Copilot Chat**, verb
 - Beschreibe das Anwendungsverhalten, relevante Objekte und szenariospezifische Testfälle.
 - Prüfe Quellcode vor Aktivierung und Tests. Prüfe vorgeschlagene Korrekturen, statt fehlgeschlagene Assertions abzuschwächen.
 - Gestalte das Laden der Beispieldaten wiederholbar und greife ausschließlich lesend auf `/DMO/`-Daten zu. Die ausführbare Klasse steuert die Transaktionsgrenzen.
-- Unterscheide beobachtete Werkzeugergebnisse von vorgeschlagenem Code oder nicht ausgeführten Prüfungen.
+- Unterscheide beobachtete Tool-Ergebnisse von vorgeschlagenem Code oder nicht ausgeführten Prüfungen.
 
 ## Beispiel-Prompts nach Übung
 
-### Übung 1 – Werkzeuge erkunden und Quellcode lesen
+### Übung 1 – Tools erkunden und Quellcode lesen
 
 ```text
-Ermittle die verfügbaren ADT-Werkzeuge zum Anlegen von Klassen und Datenbanktabellen,
+Ermittle die verfügbaren ADT-Tools zum Anlegen von Klassen und Datenbanktabellen,
 zum Aktivieren von Objekten und zum Ausführen von Unit-Tests. Lies /DMO/TRAVEL_DATA
 und /DMO/BOOKING_DATA und fasse ihre Schlüssel zusammen.
 Ändere und aktiviere nichts.

@@ -59,7 +59,7 @@ Ein eigener Agent gibt Copilot wiederverwendbaren Kontext zur Travel-Anwendung: 
    - Berichte tatsächliche Aktivierungs- und Testergebnisse. Behaupte nicht, dass nicht ausgeführte Prüfungen bestanden wurden.
    ```
 
-4. Speichere die Definition und wähle **Travel Workshop** in der Agentenauswahl. Prüfe, ob die ADT-Werkzeuge für diesen Agenten aktiviert sind.
+4. Speichere die Definition und wähle **Travel Workshop** in der Agentenauswahl. Prüfe, ob die ADT-Tools für diesen Agenten aktiviert sind.
 5. Sende diesen ausschließlich lesenden Prüf-Prompt:
 
    ```text
@@ -87,7 +87,7 @@ Die offizielle [VS-Code-Dokumentation zu eigenen Agenten](https://code.visualstu
 
 1. Prüfe, ob dein Agent die ADT-MCP-Verbindung **und** das Lesen und Bearbeiten des virtuellen ADT-Workspace unterstützt. MCP-Konnektivität allein reicht für diesen Ablauf nicht aus.
 2. Übernimm den Anwendungskontext und die Arbeitsregeln aus Abschnitt 7.1 in den vom Agenten dokumentierten Anweisungsmechanismus. Dateinamen und Formate unterscheiden sich. Gehe nicht davon aus, dass Copilots `.agent.md`-Format übertragbar ist.
-3. Aktiviere die relevanten ADT-Werkzeuge, lade die Anweisungen und führe denselben ausschließlich lesenden Prüf-Prompt aus.
+3. Aktiviere die relevanten ADT-Tools, lade die Anweisungen und führe denselben ausschließlich lesenden Prüf-Prompt aus.
 4. Prüfe, dass der Agent tatsächlichen ABAP-Quellcode liest und dein Teilnehmersuffix verwendet, bevor du Änderungen anforderst.
 
 </details>

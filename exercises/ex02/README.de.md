@@ -6,7 +6,7 @@
 
 ## Einführung
 
-In [Übung 1](../ex01/README.de.md) hast du GitHub Copilot mit den ADT-MCP-Werkzeugen verbunden. Jetzt legst du mit natürlichsprachlichen Anweisungen normale ABAP-Repository-Objekte für das im Workshop verwendete Szenario mit Reisen und Buchungen an.
+In [Übung 1](../ex01/README.de.md) hast du GitHub Copilot mit den ADT-MCP-Tools verbunden. Jetzt legst du mit natürlichsprachlichen Anweisungen normale ABAP-Repository-Objekte für das im Workshop verwendete Szenario mit Reisen und Buchungen an.
 
 Du lernst, Objektnamen und Anforderungen vorzugeben, den vorhandenen Quellcode zu untersuchen, erzeugten Code zu prüfen und voneinander abhängige Objekte zu aktivieren. Copilot schreibt den Anwendungsquellcode; ADT legt die Repository-Objekte an und aktiviert sie.
 

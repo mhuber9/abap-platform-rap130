@@ -29,7 +29,7 @@ Der Repository-Name behält `RAP130` aus Gründen der Kontinuität bei. Die Übu
 - Berechtigungen zum Anlegen und Aktivieren der Teilnehmerobjekte, Ausführen von Konsolenklassen und ABAP Unit-Tests sowie optional zum Debuggen. Das ABAP SQL Test Double Framework muss verfügbar sein.
 - Zugriff auf das vorhandene lokale Paket `$TMP` zum Anlegen der Workshop-Objekte. Ein neues Paket oder eine Eclipse-Einrichtung ist für diese Übungen nicht erforderlich.
 
-Lass die Kursleitung bestätigen, welche Backend-Freischaltungen für die ADT-Agentenwerkzeuge erforderlich sind. Die Nutzung von Copilot ersetzt diese Systemvoraussetzungen nicht.
+Lass die Kursleitung bestätigen, welche Backend-Freischaltungen für die ADT-Agenten-Tools erforderlich sind. Die Nutzung von Copilot ersetzt diese Systemvoraussetzungen nicht.
 
 > Bei SAP-Veranstaltungen stellt die Kursleitung die Systemzugangsdaten und Gruppen-IDs bereit.
 
@@ -61,7 +61,7 @@ VS-Code-Befehle, Bezeichnungen der Oberfläche, ABAP-Bezeichner und Beispielausg
 | Übung | Lernschwerpunkt |
 |----------|----------------|
 | [Erste Schritte](exercises/ex0/README.de.md) | Umgebung und Systemverbindung |
-| [Übung 1: Den ADT MCP Server aktivieren](exercises/ex01/README.de.md) | Werkzeuge erkunden und auf Quellcode zugreifen |
+| [Übung 1: Den ADT MCP Server aktivieren](exercises/ex01/README.de.md) | Tools erkunden und auf Quellcode zugreifen |
 | [Übung 2: Die ABAP-Travel-Anwendung erzeugen](exercises/ex02/README.de.md) | Tabellen, Klassen, Prüfung und Aktivierung |
 | [Übung 3: Die Travel-Anwendung ausführen](exercises/ex03/README.de.md) | Beispieldaten, Konsolenausführung und Hilfsklasse |
 | [Übung 4: Eine Validierung ergänzen](exercises/ex04/README.de.md) | Validierung vor dem Datenbankschreibzugriff |
@@ -76,7 +76,7 @@ VS-Code-Befehle, Bezeichnungen der Oberfläche, ABAP-Bezeichner und Beispielausg
 
 ## Bekannte Probleme
 
-- ADT-Befehlsnamen und verfügbare MCP-Werkzeuge können sich je nach installierter Version unterscheiden. Ermittle die tatsächlich verfügbaren Werkzeuge in Übung 1 und verwende bei Bedarf die beschriebene manuelle Objektanlage.
+- ADT-Befehlsnamen und verfügbare MCP-Tools können sich je nach installierter Version unterscheiden. Ermittle die tatsächlich verfügbaren Tools in Übung 1 und verwende bei Bedarf die beschriebene manuelle Objektanlage.
 - Ohne Quelldaten im Flight Reference Scenario können keine Beispieldaten geladen werden. Bitte die Kursleitung, die Daten vor dem Fortfahren bereitzustellen.
 - Der überarbeitete Ablauf wurde lokal auf Konsistenz der Dokumentation geprüft. Backend-Aktivierung, Konsolenausführung, ABAP Unit-Tests und Debugger-Verbindung müssen noch auf einem verbundenen Workshop-System geprüft werden.
 

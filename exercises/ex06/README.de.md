@@ -60,7 +60,7 @@ Du debuggst die ausführbare Travel-Anwendung aus [Übung 4](../ex04/README.de.m
 5. Suche **Continue**, **Step Over**, **Step Into**, **Step Out** und **Stop** in der Debug-Toolbar. Die standardmäßigen VS-Code-Tastenkombinationen lauten entsprechend F5, F10, F11, Shift+F11 und Shift+F5. Nutze die Toolbar, falls deine Tastenzuordnung abweicht. Diese Funktionen verwendest du im nächsten Abschnitt.
 6. Prüfe vor den Einzelschritten, ob die aktuelle Quellcodeanweisung und das Panel **Variables** sichtbar sind.
 
-Weitere Informationen zur Oberfläche findest du in der [VS-Code-Debugging-Dokumentation](https://code.visualstudio.com/docs/debugtest/debugging); ABAP-Werkzeuge beschreibt das [ADT-Tutorial von SAP](https://developers.sap.com/tutorials/abap-environment-adt-coretools-vscode).
+Weitere Informationen zur Oberfläche findest du in der [VS-Code-Debugging-Dokumentation](https://code.visualstudio.com/docs/debugtest/debugging); ABAP-Tools beschreibt das [ADT-Tutorial von SAP](https://developers.sap.com/tutorials/abap-environment-adt-coretools-vscode).
 
 Falls die Ausführung ohne Unterbrechung endet, prüfe, ob die Breakpoints aktiviert und gebunden sind, der Quellcode aktiv ist und die ausgewählte Klasse `save_travel` erreicht. Kontrolliere Destination und Benutzer erneut. Falls deine Backend- oder ADT-Version keine Verbindung zulässt, notiere die Version und bitte die Kursleitung, Debugger-Unterstützung und Berechtigungen zu prüfen. Die Konsolen- und Unit-Test-Übungen bleiben nutzbar.
 

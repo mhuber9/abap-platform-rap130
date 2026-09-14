@@ -17,7 +17,7 @@ Preview edited Markdown and verify relative links, heading anchors, language swi
 
 ## Style, Naming, and Translation
 
-Update English and German counterparts together. Keep German navigation within `.de.md` files and preserve the English/Deutsch switches. Translate prose and prompts; keep VS Code commands, UI labels, ABAP code, identifiers, and expected console messages in English.
+Update English and German counterparts together. Keep German navigation within `.de.md` files and preserve the English/Deutsch switches. Use “Tools” in German documentation. Translate prose and prompts; keep VS Code commands, UI labels, ABAP code, identifiers, and expected console messages in English.
 
 Preserve exercise numbering, numbered steps, tables, and expandable sections. Use spaces rather than tabs and retain surrounding indentation. Use fenced `abap` blocks for ABAP examples.
 

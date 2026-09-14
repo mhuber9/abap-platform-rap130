@@ -212,7 +212,7 @@ Installiere vor dem Fortfahren **GitHub Copilot** über die Ansicht Extensions, 
 | **Activity Bar** | Ganz links | Zwischen Explorer, Search, Source Control, Run & Debug und Extensions wechseln |
 | **Explorer (Workspace)** | Linke Seitenleiste | Durch Pakete, Objekttypen und Objekte im ABAP-System navigieren |
 | **Editor** | Mitte | ABAP-Quellcode bearbeiten: Klassen und Datenbanktabellendefinitionen |
-| **Coding agent chat** (z. B. GitHub Copilot) | Rechte Seitenleiste oder Panel | KI-gestützter Chat für Prompts und MCP-Werkzeugaufrufe |
+| **Coding agent chat** (z. B. GitHub Copilot) | Rechte Seitenleiste oder Panel | KI-gestützter Chat für Prompts und MCP-Tool-Aufrufe |
 | **Problems Panel** | Unten | Syntaxfehler und Warnungen |
 | **ABAP Console** | Unten | Ausgabe der Travel-Anwendung |
 | **Terminal** | Unten | Integrierte Shell |
